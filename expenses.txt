@@ -1,3 +1,7 @@
-"10,00",20/02/2011,sorvete,grana
-"10,00",20/02/2011,sorvete,grana
-"10,00",20/02/2011,sorvete,grana
+
+
+"value, date, description, mean"
+"value, date, description, mean"
+grana,sorvete,20,11/22/1984
+grana,sorvete,20,11/22/1984
+grana,sorvete,20,11/22/1984
