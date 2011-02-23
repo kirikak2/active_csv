@@ -24,4 +24,4 @@ if command == "last"
 	expenses = Expense.all
 end
 
-#puts expense.inspect
+puts expenses[1].description

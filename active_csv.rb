@@ -7,17 +7,29 @@ class ActiveCSV
 	def initialize()
 	end
 
+	def self.all
+		objects = Array.new
+		CSV.read('expenses.txt').each do |row|
+				new_object = Expense.new
+				new_object.value = row[0]
+				new_object.description = row[1]
+				new_object.date = row[2]
+				new_object.mean = row[3]
+				objects << new_object
+		end
+		objects
+	end
+
 	def model_name
 		self.class.to_s.downcase
 	end
 
 	def fields
-		#The sequency of the attrbiutes is alwas the same as the yaml file.
+		#The sequency of the attrbiutes is alwas the same as in the yaml file.
 		path = 'models/'
 		attributes_file = path+'attributes.yml'
 		model_fields = YAML.load_file(attributes_file)
 		model_fields #String
-		
 	end
 
 	def field_values(model)
