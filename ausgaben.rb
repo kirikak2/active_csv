@@ -21,7 +21,7 @@ if command == "add"
 	expense.save
 end
 if command == "last"
-	puts "opa isso eh um teste"
+	expenses = Expense.all
 end
 
-puts expense.inspect
+#puts expense.inspect

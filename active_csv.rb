@@ -7,12 +7,17 @@ class ActiveCSV
 	def initialize()
 	end
 
+	def model_name
+		self.class.to_s.downcase
+	end
+
 	def fields
 		#The sequency of the attrbiutes is alwas the same as the yaml file.
 		path = 'models/'
 		attributes_file = path+'attributes.yml'
 		model_fields = YAML.load_file(attributes_file)
 		model_fields #String
+		
 	end
 
 	def field_values(model)
@@ -45,7 +50,7 @@ class ActiveCSV
 
 	def save
 		a = csv_content
-		new_row = field_values('expenses')
+		new_row = field_values(model_name)
 		CSV.open(db_file_name,"wb") do |csv|		
 				a.each do |line|
 					csv << line
@@ -53,22 +58,5 @@ class ActiveCSV
 				csv << new_row
 		end
 	end
-
-=begin notas
-	def last
-		last_expense = String.new
-		if !file_exists?
-			create_db_file
-		end
-		db_file = CSV.read(db_file_name)
-		if !db_file.last.nil?
-			db_file.last.each do |value|
-				last_expense << value
-			end
-		else
-			"nenhum registro encontrado"
-		end
-	end
-=end
 end
 
