@@ -10,7 +10,7 @@ class ActiveCSV
 	def self.all
 		objects = Array.new
 		CSV.read('expenses.txt').each do |row|
-				new_object = Expense.new
+				new_object = eval(self.name).new
 				new_object.value = row[0]
 				new_object.description = row[1]
 				new_object.date = row[2]

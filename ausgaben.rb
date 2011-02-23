@@ -23,5 +23,5 @@ end
 if command == "last"
 	expenses = Expense.all
 end
-
+puts Expense.name
 puts expenses[1].description
