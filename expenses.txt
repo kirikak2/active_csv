@@ -1,7 +1,2 @@
 
-
-"value, date, description, mean"
-"value, date, description, mean"
-grana,sorvete,20,11/22/1984
-grana,sorvete,20,11/22/1984
-grana,sorvete,20,11/22/1984
+"12,00",bola de futebol,19/11/2011,dinheiro

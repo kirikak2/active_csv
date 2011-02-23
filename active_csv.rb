@@ -8,18 +8,20 @@ class ActiveCSV
 	end
 
 	def fields
+		#The sequency of the attrbiutes is alwas the same as the yaml file.
 		path = 'models/'
 		attributes_file = path+'attributes.yml'
 		model_fields = YAML.load_file(attributes_file)
-		model_fields
+		model_fields #String
 	end
 
 	def field_values(model)
-		attributes = Hash.new
-		fields[model].split(',').each do |field|
-			 attributes[field] = eval(field)
+		attributes = Array.new
+		splitted_fields=fields[model].split(', ')
+		splitted_fields.each do |field|
+			 attributes << eval(field)
 		end
-		attributes #Hash com valores do model
+		attributes #String
 	end
 
 	def file_exists?
@@ -43,10 +45,7 @@ class ActiveCSV
 
 	def save
 		a = csv_content
-		new_row = Array.new
-		attributes = field_values('expenses').each do |field, content| #como adivinhar o expenses?
-			new_row << content
-		end
+		new_row = field_values('expenses')
 		CSV.open(db_file_name,"wb") do |csv|		
 				a.each do |line|
 					csv << line
