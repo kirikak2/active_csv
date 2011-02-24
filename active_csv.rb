@@ -31,21 +31,32 @@ class ActiveCSV
 	end
 
 	def self.find(*args)
+		found_rows = Array.new
 		args[0].keys.each do |key|
 			if check_attr? key.to_s
 				col = attr_column key.to_s #descobrir qual é a posição deste atributo
 				object =  eval(self.name).new
 				object.db_file_name = "expenses.txt"
 				content = object.csv_content #pegar o conteudo do arquivo
-				content.each do |row|
-					puts row[col]
+				found_cols = Array.new
+				content.each_with_index do |row, index|
+					if row[col] == args[0][key]				#achar a palavra de busca dentro do arquivo
+						found_cols << index
+					end
 				end
-				#achar a palavra de busca dentro do arquivo
-				#recuperar o array completo para cada apalvra encontrada e retornar
+				
+				found_cols.each do |found|				#recuperar o array completo para cada apalvra encontrada e retornar
+					found_rows << content[found]
+				end
+				found_rows
+				#transformar em objeto!!
 			else
 				#raise error
 			end
 		end
+
+		return found_rows
+
 	end
 
 	def model_name
