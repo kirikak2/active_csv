@@ -1,5 +1,5 @@
 expense:
   value,
-  date,
   description,
+  date,
   mean

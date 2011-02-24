@@ -1,3 +1,8 @@
 
 "12,00",bola de futebol,19/11/2011,dinheiro
 "12,00",bola de futebol,19/11/2011,dinheiro
+"9,99",barbie,11/11/1111,dinherio
+"9,99",barbie,11/11/1111,dinherio
+"9,99",barbie,11/11/1111,dinherio
+"9,99",barbie,11/11/1111,dinherio
+"9,99",barbie,11/11/1111,dinherio
