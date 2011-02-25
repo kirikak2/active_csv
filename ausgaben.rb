@@ -2,7 +2,7 @@ require 'active_csv'
 
 class Expense < ActiveCSV
 	
-	attr_accessor :value, :date, :description, :mean, :id
+	attr_accessor :value, :date, :description, :mean
 
 end
 

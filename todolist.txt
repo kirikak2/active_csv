@@ -1,0 +1,5 @@
+tem um monte de hard-code, se livrar disso ai
+incluir um find by id
+tirar o id o modelo que o user deve criar o yml
+colocar declaração do db_file_name no yml também
+escrever testes!

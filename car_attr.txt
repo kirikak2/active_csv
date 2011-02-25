@@ -1,0 +1,4 @@
+car:
+  year,
+  brand,
+  color

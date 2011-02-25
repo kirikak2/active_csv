@@ -2,7 +2,7 @@ class ActiveCSV
 	require 'csv'
 	require 'yaml'
 
-	attr_accessor :db_file_name, :id
+	attr_accessor :db_file_name, :id, :attr_file_name
 
 	def initialize()
 		self.db_file_name = "expenses.txt" # mudar isso aqui heim
@@ -18,7 +18,7 @@ class ActiveCSV
 		objects
 	end
 
-	def self.ar_to_obj(attr_array) #turn array of arrays into object properties. Returns array of objects
+	def self.ar_to_obj(attr_array) # turns array of arrays into object properties. Returns array of objects
 		objects = Array.new
 		new_object = eval(self.name).new
 		attr_array.each do |row|
@@ -30,7 +30,8 @@ class ActiveCSV
 		end
 		objects
 	end
-#relacioadnadas ao find
+
+# relacionadas ao find
 	def self.check_attr?(attribute)
 		object  = eval(self.name).new
 		object.fields.include? attribute
@@ -56,27 +57,25 @@ class ActiveCSV
 					end
 				end
 				
-				found_cols.each do |found|				#recuperar o array completo para cada apalvra encontrada e retornar
+				found_cols.each do |found|	#recuperar o array completo para cada apalvra encontrada e retornar
 					found_rows << content[found]
 				end
 			else
-				#raise error
+				# raise error
 			end
 		end
 
-		return ar_to_obj(found_rows)#transformar em objeto!!
+		return ar_to_obj(found_rows)# transforma em objeto
 
 	end
 
 	def model_name
 		self.class.to_s.downcase
 	end
-
+	
 	def fields
-		#The sequency of the attributes is always the same as in the yaml file.
-		path = 'models/'
-		attributes_file = path+'attributes.yml'
-		model_fields = YAML.load_file(attributes_file)
+		# The sequency of the attributes is always the same as in the yaml file.
+		model_fields = YAML.load_file(attr_file_name)
 		model_fields[model_name].split(', ') #Array
 	end
 
@@ -117,7 +116,7 @@ class ActiveCSV
 	end
 
 	def next_id
-		last_id.to_i+1 # e se nao tiver registro nenhum? #comofas?
+		last_id.to_i+1
 	end
 
 	def save
