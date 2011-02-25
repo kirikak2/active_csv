@@ -1,4 +1,5 @@
 expense:
+  id,
   value,
   description,
   date,

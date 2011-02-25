@@ -1,3 +1,2 @@
 
-"60,00",24/02/2011,depósito,pagamento de desenv. de logotipo apotema
-"90,00",20/02/2011,acampa 2011 carnaval,depósito
+1,"10,00",suco com a Maéli,23/02/2011,dinheir

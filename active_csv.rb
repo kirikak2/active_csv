@@ -2,9 +2,11 @@ class ActiveCSV
 	require 'csv'
 	require 'yaml'
 
-	attr_accessor :db_file_name
+	attr_accessor :db_file_name, :id
 
 	def initialize()
+		self.db_file_name = "expenses.txt" # mudar isso aqui heim
+		self.id = next_id 
 	end
 
 	def self.all
@@ -43,7 +45,7 @@ class ActiveCSV
 		found_rows = Array.new
 		args[0].keys.each do |key|
 			if check_attr? key.to_s
-				col = attr_column key.to_s #descobrir qual é a posição deste atributo
+				col = attr_column key.to_s # descobrir qual é a posição deste atributo
 				object =  eval(self.name).new
 				object.db_file_name = "expenses.txt"
 				content = object.csv_content #pegar o conteudo do arquivo
@@ -105,15 +107,32 @@ class ActiveCSV
 		csv_rows
 	end
 
+	def last_id
+		attr_array = csv_content
+		unless attr_array.count == 0
+			attr_array.last[0]
+		else
+			0
+		end
+	end
+
+	def next_id
+		last_id.to_i+1 # e se nao tiver registro nenhum? #comofas?
+	end
+
 	def save
 		a = csv_content
-		new_row = field_values("expense")
+		new_row = field_values(model_name)
 		CSV.open(db_file_name,"wb") do |csv|		
 				a.each do |line|
 					csv << line
 				end
 				csv << new_row
 		end
+	end
+
+	def delete
+		puts next_id
 	end
 end
 
