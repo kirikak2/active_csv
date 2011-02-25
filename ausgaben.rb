@@ -25,9 +25,9 @@ if command == "last"
 	puts expenses[1].inspect
 end
 
-if command =="find"
+if command == "find"
 	word = ARGV[1]
-	expenses = Expense.find(:description=>word)
+	expenses = Expense.find(:description=>word, :value=>"12,00")
 	puts expenses.inspect
 end
 

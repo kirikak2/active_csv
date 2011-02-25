@@ -1,8 +1,3 @@
 
-"12,00",bola de futebol,19/11/2011,dinheiro
-"12,00",bola de futebol,19/11/2011,dinheiro
-"9,99",barbie,11/11/1111,dinherio
-"9,99",barbie,11/11/1111,dinherio
-"9,99",barbie,11/11/1111,dinherio
-"9,99",barbie,11/11/1111,dinherio
-"9,99",barbie,11/11/1111,dinherio
+"60,00",24/02/2011,depósito,pagamento de desenv. de logotipo apotema
+"90,00",20/02/2011,acampa 2011 carnaval,depósito

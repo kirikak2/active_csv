@@ -80,8 +80,7 @@ class ActiveCSV
 
 	def field_values(model)
 		attributes = Array.new
-		splitted_fields=fields[model].split(', ')
-		splitted_fields.each do |field|
+		fields.each do |field|
 			 attributes << eval(field)
 		end
 		attributes #String
@@ -108,7 +107,7 @@ class ActiveCSV
 
 	def save
 		a = csv_content
-		new_row = field_values(model_name)
+		new_row = field_values("expense")
 		CSV.open(db_file_name,"wb") do |csv|		
 				a.each do |line|
 					csv << line
