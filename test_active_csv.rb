@@ -6,11 +6,19 @@ class Car < ActiveCSV
 end
 
 class ActiveCSVTest < Test::Unit::TestCase
-	def test_save
-		csv = Car.new
-		csv.db_file_name = "active_tests.txt"
-		csv.attr_file_name = "car_attr.txt"
+	def test_save_file_exists
+		csv = Car.new("active_tests.txt")
+		csv.attr_file_name = "car_attr.yml"
+		csv.year = "1998"
+		csv.color = "red"
+		csv.brand = "wolksvagen"
 		csv.save
-		assert File.exists? "active_tests.txt"
+		puts csv.inspect
+		assert File.exists? csv.db_file_name
+		File.delete(csv.db_file_name)
+	end
+
+	def test_save_number_of _entries
+		
 	end
 end

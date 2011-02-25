@@ -7,8 +7,7 @@ class Expense < ActiveCSV
 end
 
 ########### Execução ##############
-expense = Expense.new()
-expense.db_file_name = "expenses.txt"
+expense = Expense.new("expenses.txt")
 command = ARGV[0]
 
 if command == "add"
@@ -17,7 +16,7 @@ if command == "add"
 	expense.date = date
 	expense.description = description
 	expense.mean = mean
-
+	expense.attr_file_name = "models/attributes.yml"
 	expense.save
 	puts expense.inspect
 end

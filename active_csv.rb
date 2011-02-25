@@ -4,15 +4,15 @@ class ActiveCSV
 
 	attr_accessor :db_file_name, :id, :attr_file_name
 
-	def initialize()
-		self.db_file_name = "expenses.txt" # mudar isso aqui heim
+	def initialize(file_name)
+		self.db_file_name = file_name
 		self.id = next_id 
 	end
 
 	def self.all
 		objects = Array.new
 		new_object = eval(self.name).new
-		new_object.db_file_name = "expenses.txt"
+		new_object.db_file_name = "expenses.txt" # HARD-CODE
 		attr_array = new_object.csv_content
 		objects = ar_to_obj(attr_array)
 		objects
@@ -48,7 +48,7 @@ class ActiveCSV
 			if check_attr? key.to_s
 				col = attr_column key.to_s # descobrir qual é a posição deste atributo
 				object =  eval(self.name).new
-				object.db_file_name = "expenses.txt"
+				object.db_file_name = "expenses.txt" #HARD-CODE
 				content = object.csv_content #pegar o conteudo do arquivo
 				found_cols = Array.new
 				content.each_with_index do |row, index|
@@ -121,6 +121,7 @@ class ActiveCSV
 
 	def save
 		a = csv_content
+		puts csv_content
 		new_row = field_values(model_name)
 		CSV.open(db_file_name,"wb") do |csv|		
 				a.each do |line|
