@@ -9,8 +9,17 @@ class ActiveCSV
 
 	def self.all
 		objects = Array.new
-		CSV.read('expenses.txt').each do |row|
-				new_object = eval(self.name).new
+		new_object = eval(self.name).new
+		new_object.db_file_name = "expenses.txt"
+		attr_array = new_object.csv_content
+		objects = ar_to_obj(attr_array)
+		objects
+	end
+
+	def self.ar_to_obj(attr_array) #turn array of arrays into object properties. Returns array of objects
+		objects = Array.new
+		new_object = eval(self.name).new
+		attr_array.each do |row|
 				fields_ar = new_object.fields
 				fields_ar.each_index do |index|
 					eval("new_object."+fields_ar[index]+" = row[index]") #new_object.fields_ar[0] = row[0] and so on...
@@ -19,7 +28,7 @@ class ActiveCSV
 		end
 		objects
 	end
-
+#relacioadnadas ao find
 	def self.check_attr?(attribute)
 		object  = eval(self.name).new
 		object.fields.include? attribute
@@ -48,14 +57,12 @@ class ActiveCSV
 				found_cols.each do |found|				#recuperar o array completo para cada apalvra encontrada e retornar
 					found_rows << content[found]
 				end
-				found_rows
-				#transformar em objeto!!
 			else
 				#raise error
 			end
 		end
 
-		return found_rows
+		return ar_to_obj(found_rows)#transformar em objeto!!
 
 	end
 

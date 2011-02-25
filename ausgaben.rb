@@ -22,11 +22,12 @@ if command == "add"
 end
 if command == "last"
 	expenses = Expense.all
-	puts expenses[3].inspect
+	puts expenses[1].inspect
 end
 
 if command =="find"
-	expenses = Expense.find(:description=>"barbie")
+	word = ARGV[1]
+	expenses = Expense.find(:description=>word)
 	puts expenses.inspect
 end
 
