@@ -7,7 +7,7 @@ class Expense < ActiveCSV
 end
 
 ########### Execução ##############
-expense = Expense.new("expenses.txt")
+expense = Expense.new
 command = ARGV[0]
 
 if command == "add"

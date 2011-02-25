@@ -1,5 +1,5 @@
-expenses
-  value
-  date
-  description
-  mean
+car:
+  id,
+  year,
+  color,
+  brand
