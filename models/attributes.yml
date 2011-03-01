@@ -4,3 +4,9 @@ expense:
   description,
   date,
   mean
+
+car:
+  id,
+  year,
+  color,
+  brand

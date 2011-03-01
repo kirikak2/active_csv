@@ -27,7 +27,7 @@ end
 
 if command == "find"
 	word = ARGV[1]
-	expenses = Expense.find(:description=>word, :value=>"12,00")
+	expenses = Expense.find(:description=>word)
 	puts expenses.inspect
 end
 if command == "delete_last"
