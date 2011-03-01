@@ -1,17 +1,4 @@
-class DbFile
-	def csv_content
-		csv_rows = Array.new
-		if !file_exists?
-			create_db_file
-		end
-		CSV.read(db_file_name).each do |row|
-				csv_rows << row
-		end
-		csv_rows
-	end
-end
-
-class ActiveCSV < DbFile
+class ActiveCSV
 	require 'csv'
 	require 'yaml'
 
@@ -25,7 +12,7 @@ class ActiveCSV < DbFile
 
 	def self.all
 		objects = Array.new
-		new_object = DbFile.new
+		new_object = eval(self.name).new # aqruivo de bd sempre srá o nome do modelo no plural (regras do inglês)
 		attr_array = new_object.csv_content
 		objects = ar_to_obj(attr_array)
 		objects
@@ -33,7 +20,7 @@ class ActiveCSV < DbFile
 
 	def self.ar_to_obj(attr_array) # turns array of arrays into object properties. Returns array of objects
 		objects = Array.new
-		new_object = DbFile.new  
+		new_object = eval(self.name).new#  
 		attr_array.each do |row|
 				fields_ar = new_object.fields
 				fields_ar.each_index do |index|
@@ -108,6 +95,17 @@ class ActiveCSV < DbFile
 		CSV.open(db_file_name,'w')
 	end
 
+	def csv_content
+		csv_rows = Array.new
+		if !file_exists?
+			create_db_file
+		end
+		CSV.read(db_file_name).each do |row|
+				csv_rows << row
+		end
+		csv_rows
+	end
+
 	def last_id
 		attr_array = csv_content
 		unless attr_array.count == 0
@@ -123,6 +121,7 @@ class ActiveCSV < DbFile
 
 	def save
 		a = csv_content
+		puts csv_content
 		new_row = field_values(model_name)
 		CSV.open(db_file_name,"wb") do |csv|		
 				a.each do |line|

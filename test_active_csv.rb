@@ -20,8 +20,6 @@ class ActiveCSVTest < Test::Unit::TestCase
 	def delete_sample
 		File.delete("car.txt")
 	end
-
-# SAVE
 	def test_save_file_exists
 		car = Car.new
 		car.attr_file_name = "attributes.yml"
@@ -32,8 +30,6 @@ class ActiveCSVTest < Test::Unit::TestCase
 		assert File.exists? car.db_file_name
 		File.delete(car.db_file_name)
 	end
-
-# ALL
 	def test_all
 		create_sample_file
 		cars = Car.all
@@ -46,8 +42,4 @@ class ActiveCSVTest < Test::Unit::TestCase
 		cars = Car.all
 		assert_equal(0,cars.length)
 	end
-
-# FIND
-
-
 end
