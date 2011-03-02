@@ -1,3 +1,6 @@
+class RecordNotFound
+end
+
 class AttrFile
 	attr_accessor :name
 
@@ -87,8 +90,17 @@ module ClassMethods
 							found_ids << index
 						end
 				end
-				found_ids.each do |found|
-					found_rows << content[found]
+				case found_ids.size
+				when 0
+					#begin
+						raise "RecordNotFound" #, "Couldn't find with provided ID "
+					#rescue
+						#puts	"phew, tha was a close one, uh?"
+#					end
+				else
+					found_ids.each do |found|
+						found_rows << content[found]
+					end
 				end
 		else
 			args[0].keys.each do |key|
@@ -110,7 +122,6 @@ module ClassMethods
 					# raise error
 				end
 			end
-			"opa"
 		end
 
 		return ar_to_obj(found_rows)# transforma em objeto
