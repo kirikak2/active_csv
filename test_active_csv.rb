@@ -63,11 +63,11 @@ class ActiveCSVTest < Test::Unit::TestCase
 		assert_equal cars.length,2
 	end
 
-#	def test_find_by_id
-#		create_sample_file
-#		cars = Car.find(2)
-#		assert_equal cars.first.id, 2
-#	end
+	def test_find_by_id
+		create_sample_file
+		cars = Car.find(2)
+		assert_equal cars[0].id, 2
+	end
 
 #---------helper methods-----------------
 	def create_sample_file 
