@@ -79,12 +79,17 @@ module ClassMethods
 	def find(*args)
 		found_rows = Array.new
 		if args.length == 1 && (args[0].respond_to? "integer?")
-				car = Car.new
-				car.id = 2
-				ar = Array.new
-				ar <<	car
-				puts ar.inspect
-				return ar
+				file = DbFile.new("car.txt")
+				content = file.csv_content
+				found_ids = Array.new
+				content.each_with_index do |row, index|
+						if row[0] == args[0].to_s	#achar a palavra de busca dentro do arquivo
+							found_ids << index
+						end
+				end
+				found_ids.each do |found|
+					found_rows << content[found]
+				end
 		else
 			args[0].keys.each do |key|
 				if check_attr? key.to_s
@@ -105,6 +110,7 @@ module ClassMethods
 					# raise error
 				end
 			end
+			"opa"
 		end
 
 		return ar_to_obj(found_rows)# transforma em objeto

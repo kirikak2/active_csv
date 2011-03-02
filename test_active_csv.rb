@@ -54,19 +54,19 @@ class ActiveCSVTest < Test::Unit::TestCase
 	def test_find_by_attr
 		create_sample_file
 		cars = Car.find(:color=>"red")
-		assert_equal cars.first.color, "red"
+		assert_equal "red", cars.first.color
 	end
 
 	def test_find_by_attr_quatity
 		create_sample_file
 		cars = Car.find(:color=>"red")
-		assert_equal cars.length,2
+		assert_equal 2, cars.length
 	end
 
 	def test_find_by_id
 		create_sample_file
 		cars = Car.find(2)
-		assert_equal cars[0].id, 2
+		assert_equal "2", cars[0].id
 	end
 
 #---------helper methods-----------------
