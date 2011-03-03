@@ -57,11 +57,10 @@ class ActiveCSVTest < Test::Unit::TestCase
 		assert_equal "red", cars.first.color
 	end
 
-#	def test_find_by_attr_missing
-#		create_sample_file
-#		cars = Car.find(:color=>"darkblue")
-#		assert_equal(RecordNotFound) { cars = Car.find(:color=>"darkblue") }
-#	end
+	def test_find_by_attr_missing
+		create_sample_file
+		assert_raise(RecordNotFound) { cars = Car.find(:color=>"darkblue") }
+	end
 
 	def test_find_by_attr_quatity
 		create_sample_file
@@ -83,7 +82,7 @@ class ActiveCSVTest < Test::Unit::TestCase
 
 	def test_find_by_id_missing
 		create_sample_file
-		assert_raise (RecordNotFound) { cars = Car.find(5) }
+		assert_raise(RecordNotFound) { cars = Car.find(5) }
 		delete_sample
 	end
 
