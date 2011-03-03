@@ -68,7 +68,7 @@ module ClassMethods
 		objects
 	end
 
-# relacionadas ao find
+#------- relacionadas ao find-------
 	def check_attr?(attribute)
 		attr_file = AttrFile.new("models/attributes.yml")	
 		attr_file.fields(model_name).include? attribute
@@ -79,25 +79,36 @@ module ClassMethods
 		object.attr_file.fields(model_name).index attribute
 	end
 
+	def find_with_id(id,content)
+		found_ids = Array.new
+		content.each_with_index do |row, index|
+				if row[0] == id.to_s	#achar a palavra de busca dentro do arquivo
+					found_ids << index
+				end
+		end
+		found_ids
+	end
+
+	def find_rows_by_indexes(indexes,content)
+		found_rows = Array.new
+		case indexes.size
+		when 0
+				raise RecordNotFound, "Couldn't find the especified ID"
+		else
+			indexes.each do |found|
+				found_rows << content[found]
+			end
+		end
+		found_rows
+	end
+
 	def find(*args)
 		found_rows = Array.new
+		file = DbFile.new("car.txt")
+		content = file.csv_content
 		if args.length == 1 && (args[0].respond_to? "integer?")
-				file = DbFile.new("car.txt")
-				content = file.csv_content
-				found_ids = Array.new
-				content.each_with_index do |row, index|
-						if row[0] == args[0].to_s	#achar a palavra de busca dentro do arquivo
-							found_ids << index
-						end
-				end
-				case found_ids.size
-				when 0
-						raise RecordNotFound, "Couldn't find the especified ID"
-				else
-					found_ids.each do |found|
-						found_rows << content[found]
-					end
-				end
+				found_ids_indexes = find_with_id(args[0],content)
+				found_rows = find_rows_by_indexes(found_ids_indexes,content)
 		else
 			args[0].keys.each do |key|
 				if check_attr? key.to_s
