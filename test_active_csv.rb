@@ -65,20 +65,27 @@ class ActiveCSVTest < Test::Unit::TestCase
 
 	def test_find_by_id_2
 		create_sample_file
-		cars = Car.find(2)
-		assert_equal "2", cars[0].id
+		car = Car.find(2)
+		assert_equal "2", car[0].id
 	end
 
 	def test_find_by_id_3
 		create_sample_file
-		cars = Car.find(3)
-		assert_equal "3", cars[0].id
+		car = Car.find(3)
+		assert_equal "3", car[0].id
 	end
 
 	def test_find_by_id_missing
 		create_sample_file
 		assert_raise (RecordNotFound) { cars = Car.find(5) }
 		delete_sample
+	end
+
+	def test_find_by_ids
+		create_sample_file
+		cars = Car.find(3,4)
+		assert_equal "3", cars[0].id
+		assert_equal "4", cars[1].id
 	end
 
 #---------helper methods-----------------
