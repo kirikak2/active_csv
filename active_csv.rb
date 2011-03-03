@@ -79,6 +79,19 @@ module ClassMethods
 		object.attr_file.fields(model_name).index attribute
 	end
 
+	def find_rows_by_indexes(indexes,content)
+		found_rows = Array.new
+		case indexes.size
+		when 0
+				raise RecordNotFound, "Couldn't find the especified ID"
+		else
+			indexes.each do |found_|
+				found_rows << content[found_]
+			end
+		end
+		found_rows
+	end
+
 	def find_with_id(id,content)
 		found_ids = Array.new
 		content.each_with_index do |row, index|
@@ -89,21 +102,15 @@ module ClassMethods
 		found_ids
 	end
 
-	def find_rows_by_indexes(indexes,content)
-		found_rows = Array.new
-		case indexes.size
-		when 0
-				raise RecordNotFound, "Couldn't find the especified ID"
-		else
-			indexes.each do |found|
-				found_rows << content[found]
-			end
-		end
-		found_rows
-	end
-
-	def find_with_attr
-		
+	def find_with_attr(args,key,content)
+		found_cols = Array.new
+		col = attr_column key.to_s
+		content.each_with_index do |row, index|
+						if row[col] == args[0][key]
+							found_cols << index
+						end
+					end
+		found_cols
 	end
 
 	def find(*args)
@@ -115,16 +122,8 @@ module ClassMethods
 		else
 			args[0].keys.each do |key|
 				if check_attr? key.to_s
-					file = DbFile.new("car.txt")
-					col = attr_column key.to_s 
-					content = file.csv_content 
-					found_cols = Array.new
-					content.each_with_index do |row, index|
-						if row[col] == args[0][key]
-							found_cols << index
-						end
-					end
-					found_rows = find_rows_by_indexes(found_cols,content)
+					found_rows_indexes = find_with_attr(args,key,content)
+					found_rows = find_rows_by_indexes(found_rows_indexes,content)
 				else
 					# raise error
 				end
