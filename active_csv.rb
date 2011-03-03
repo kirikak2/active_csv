@@ -82,7 +82,7 @@ module ClassMethods
 	def find_with_id(id,content)
 		found_ids = Array.new
 		content.each_with_index do |row, index|
-				if row[0] == id.to_s	#achar a palavra de busca dentro do arquivo
+				if row[0] == id.to_s	
 					found_ids << index
 				end
 		end
@@ -102,8 +102,11 @@ module ClassMethods
 		found_rows
 	end
 
+	def find_with_attr
+		
+	end
+
 	def find(*args)
-		found_rows = Array.new
 		file = DbFile.new("car.txt")
 		content = file.csv_content
 		if args.length == 1 && (args[0].respond_to? "integer?")
@@ -113,18 +116,15 @@ module ClassMethods
 			args[0].keys.each do |key|
 				if check_attr? key.to_s
 					file = DbFile.new("car.txt")
-					col = attr_column key.to_s # descobrir qual é a posição deste atributo
-					content = file.csv_content # pegar o conteudo do arquivo
+					col = attr_column key.to_s 
+					content = file.csv_content 
 					found_cols = Array.new
 					content.each_with_index do |row, index|
-						if row[col] == args[0][key]		#achar a palavra de busca dentro do arquivo
+						if row[col] == args[0][key]
 							found_cols << index
 						end
 					end
-				
-					found_cols.each do |found|	#recuperar o array completo para cada apalvra encontrada e retornar
-						found_rows << content[found]
-					end
+					found_rows = find_rows_by_indexes(found_cols,content)
 				else
 					# raise error
 				end
