@@ -57,13 +57,13 @@ module ClassMethods
 
 	def ar_to_obj(attr_array) # turns array of arrays into object properties. Returns array of objects
 		objects = Array.new
-		new_object = eval(self.name).new
 		attr_array.each do |row|
-				fields_ar = new_object.attr_file.fields(model_name)
-				fields_ar.each_index do |index|
-					eval("new_object."+fields_ar[index]+" = row[index]") #new_object.fields_ar[0] = row[0] and so on...
-				end
-				objects << new_object
+			new_object = eval(self.name).new
+			fields_ar = new_object.attr_file.fields(model_name)
+			fields_ar.each_index do |index|
+				eval("new_object."+fields_ar[index]+" = row[index]") #new_object.fields_ar[0] = row[0] and so on...
+			end
+			objects << new_object
 		end
 		objects
 	end
@@ -85,18 +85,20 @@ module ClassMethods
 		when 0
 				raise RecordNotFound, "Couldn't find the especified ID"
 		else
-			indexes.each do |found_|
-				found_rows << content[found_]
+			indexes.each do |found|
+				found_rows << content[found]
 			end
 		end
 		found_rows
 	end
 
-	def find_with_id(id,content)
+	def find_with_ids(ids,content)
 		found_ids = Array.new
 		content.each_with_index do |row, index|
-				if row[0] == id.to_s	
-					found_ids << index
+				ids.each do |id|
+					if row[0] == id.to_s
+						found_ids << index
+					end
 				end
 		end
 		found_ids
@@ -116,8 +118,8 @@ module ClassMethods
 	def find(*args)
 		file = DbFile.new("car.txt")
 		content = file.csv_content
-		if args.length == 1 && (args[0].respond_to? "integer?")
-				found_ids_indexes = find_with_id(args[0],content)
+		if args[0].respond_to? "integer?"
+				found_ids_indexes = find_with_ids(args,content)
 				found_rows = find_rows_by_indexes(found_ids_indexes,content)
 		else
 			args[0].keys.each do |key|
@@ -129,8 +131,7 @@ module ClassMethods
 				end
 			end
 		end
-
-		return ar_to_obj(found_rows)# transforma em objeto
+		return ar_to_obj(found_rows)# transforma em objetos
 
 	end
 
