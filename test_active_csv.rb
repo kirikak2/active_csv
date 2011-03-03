@@ -77,10 +77,8 @@ class ActiveCSVTest < Test::Unit::TestCase
 
 	def test_find_by_id_missing
 		create_sample_file
-		cars = Car.find(5)
-		assert_raise RecordNotFound do
-			raise "Error"
-		end
+		assert_raise (RecordNotFound) { cars = Car.find(5) }
+		delete_sample
 	end
 
 #---------helper methods-----------------

@@ -1,4 +1,4 @@
-class RecordNotFound
+class RecordNotFound < StandardError
 end
 
 class AttrFile
@@ -92,11 +92,7 @@ module ClassMethods
 				end
 				case found_ids.size
 				when 0
-					#begin
-						raise "RecordNotFound" #, "Couldn't find with provided ID "
-					#rescue
-						#puts	"phew, tha was a close one, uh?"
-#					end
+						raise RecordNotFound, "Couldn't find the especified ID"
 				else
 					found_ids.each do |found|
 						found_rows << content[found]
