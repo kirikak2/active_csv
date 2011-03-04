@@ -1,5 +1,4 @@
 module ClassMethods
-
 	def all
 		objects = Array.new
 		db_file = DbFile.new(model_name+".txt")

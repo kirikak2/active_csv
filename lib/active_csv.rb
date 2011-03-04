@@ -1,22 +1,8 @@
 require '../lib/active_csv/errors'
 require '../lib/active_csv/class_methods'
-
-class AttrFile
-
-	attr_accessor :name
-
-	def initialize(_name)
-		@name = _name
-	end
-	def fields(model_name)
-		# The sequency of the attributes is always the same as in the yaml file.
-		model_fields = YAML.load_file(@name)
-		model_fields[model_name].split(', ') #Array
-	end
-end
+require '../lib/active_csv/attr_file'
 
 class DbFile
-
 	attr_accessor :name
 
 	def initialize(_name)
@@ -47,7 +33,6 @@ class DbFile
 end
 
 class ActiveCSV
-
 	require 'csv'
 	require 'yaml'
 
