@@ -1,4 +1,4 @@
-require '../active_csv'
+require '../lib/active_csv'
 
 class Car < ActiveCSV
 	attr_accessor :color, :year, :brand
