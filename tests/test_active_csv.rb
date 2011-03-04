@@ -1,5 +1,6 @@
 require 'test/unit'
 require 'active_csv'
+require 'test_helpers'
 
 class Car < ActiveCSV
 	attr_accessor :color, :year, :brand
@@ -79,6 +80,7 @@ class FindTests < Test::Unit::TestCase
 		create_sample_file
 		cars = Car.find(:color=>"red")
 		assert_equal "red", cars.first.color
+		delete_sample
 	end
 
 	def test_find_by_attr_missing
