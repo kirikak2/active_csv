@@ -1,3 +1,5 @@
+require 'csv'
+
 module TestHelpers
 	def create_sample_file 
 		content = [["1","1997", "red","Fiat"],
