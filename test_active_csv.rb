@@ -6,9 +6,13 @@ class Car < ActiveCSV
 	attr_accessor :color, :year, :brand
 end
 
-class SaveTests < Test::Unit::TestCase
+class Clients < ActiveCSV
+	attr_accessor :name, :address
+end
 
+class SaveTests < Test::Unit::TestCase
 	include TestHelpers
+
 	def test_save_file_exists 
 		car = Car.new
 		car.year = "1998"
@@ -33,8 +37,8 @@ class SaveTests < Test::Unit::TestCase
 end
 
 class AllTests < Test::Unit::TestCase
-
 	include TestHelpers
+
 	def test_all
 		create_sample_file
 		cars = Car.all
@@ -56,8 +60,8 @@ class AllTests < Test::Unit::TestCase
 end
 
 class FindTests < Test::Unit::TestCase
-
 	include TestHelpers
+
 	def test_find_by_attr
 		create_sample_file
 		cars = Car.find(:color=>"red")

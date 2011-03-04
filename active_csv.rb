@@ -2,6 +2,7 @@ class RecordNotFound < StandardError
 end
 
 class AttrFile
+
 	attr_accessor :name
 
 	def initialize(_name)
@@ -12,7 +13,6 @@ class AttrFile
 		model_fields = YAML.load_file(@name)
 		model_fields[model_name].split(', ') #Array
 	end
-
 end
 
 class DbFile
@@ -47,9 +47,10 @@ class DbFile
 end
 
 module ClassMethods
+
 	def all
 		objects = Array.new
-		db_file = DbFile.new("car"+".txt")
+		db_file = DbFile.new(model_name+".txt")
 		attr_array = db_file.csv_content
 		objects = ar_to_obj(attr_array)
 		objects
@@ -116,7 +117,7 @@ module ClassMethods
 	end
 
 	def find(*args)
-		file = DbFile.new("car.txt")
+		file = DbFile.new(model_name+".txt")
 		content = file.csv_content
 		if args[0].respond_to? "integer?"
 				found_ids_indexes = find_with_ids(args,content)
@@ -151,7 +152,7 @@ class ActiveCSV
 
 	def initialize
 		self.attr_file = AttrFile.new("models/attributes.yml")
-		self.db_file = DbFile.new("car"+".txt")
+		self.db_file = DbFile.new(model_name+".txt")
 		self.id = next_id 
 	end
 
