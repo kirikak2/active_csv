@@ -25,7 +25,7 @@ end
 
 class SaveTests < Test::Unit::TestCase
 	include TestHelpers
-############ SAVE method #################
+
 	def test_save_file_exists 
 		car = Car.new
 		car.year = "1998"
@@ -51,7 +51,7 @@ end
 
 class AllTests < Test::Unit::TestCase
 	include TestHelpers
-############### ALL method ####################
+
 	def test_all
 		create_sample_file
 		cars = Car.all
@@ -74,7 +74,7 @@ end
 
 class FindTests < Test::Unit::TestCase
 	include TestHelpers
-############### FIND method ###################
+
 	def test_find_by_attr
 		create_sample_file
 		cars = Car.find(:color=>"red")
@@ -84,24 +84,28 @@ class FindTests < Test::Unit::TestCase
 	def test_find_by_attr_missing
 		create_sample_file
 		assert_raise(RecordNotFound) { cars = Car.find(:color=>"darkblue") }
+		delete_sample
 	end
 
 	def test_find_by_attr_quatity
 		create_sample_file
 		cars = Car.find(:color=>"red")
 		assert_equal 2, cars.length
+		delete_sample
 	end
 
 	def test_find_by_id_2
 		create_sample_file
 		car = Car.find(2)
 		assert_equal "2", car[0].id
+		delete_sample
 	end
 
 	def test_find_by_id_3
 		create_sample_file
 		car = Car.find(3)
 		assert_equal "3", car[0].id
+		delete_sample
 	end
 
 	def test_find_by_id_missing
@@ -113,8 +117,8 @@ class FindTests < Test::Unit::TestCase
 	def test_find_by_ids
 		create_sample_file
 		cars = Car.find(3,4)
-		#puts cars.inspect
 		assert_equal "4", cars[1].id
 		assert_equal "3", cars[0].id
+		delete_sample
 	end
 end
