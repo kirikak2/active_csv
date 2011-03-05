@@ -41,8 +41,14 @@ class ActiveCSV
 		last_id.to_i+1
 	end
 
-	def save
-		self.id = next_id 
+	def persist
+		#apagar linha correspondete ao index
+		destroy
+		#gravar nova linha com o mesmo id
+		persist_new_obj
+	end
+
+	def persist_new_obj
 		a = db_file.csv_content
 		new_row = field_values
 		CSV.open(db_file.name,"wb") do |csv|		
@@ -51,6 +57,11 @@ class ActiveCSV
 				end
 				csv << new_row
 		end
+	end
+
+	def save
+		self.id = next_id 
+		persist_new_obj
 	end
 
 	def destroy
@@ -69,7 +80,7 @@ class ActiveCSV
 		self
 	end
 
-	def hash_to_ar(hash)
+	def hash_to_obj(hash)
 		hash.each do |key, value|
 			key = key.to_s
 			eval("self."+key+" = hash[:"+key+"]")
@@ -77,8 +88,9 @@ class ActiveCSV
 	end
 
 	def update_attributes(hash_attr)
-		hash_to_ar(hash_attr)
-#		self.color = "yeallow"
+		hash_to_obj(hash_attr)
+		persist
+		true
 	end
 end
 

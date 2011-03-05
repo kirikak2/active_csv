@@ -11,6 +11,7 @@ class UpdateAttributesTests < Test::Unit::TestCase
 		car.update_attributes({:year=>"2000",:color=>"yeallow", :brand=>"Fusquinha sem vergonha"})
 		
 		assert_equal "yeallow",car.color
+		assert_equal "yeallow", Car.find(1).first.color
 		delete_sample
 	end
 
@@ -20,6 +21,7 @@ class UpdateAttributesTests < Test::Unit::TestCase
 		car.update_attributes({:year=>"1500",:color=>"pink", :brand=>"Ferrari"})
 		
 		assert_equal "pink",car.color
+		assert_equal "pink",Car.find(2).first.color
 		delete_sample
 	end
 end
