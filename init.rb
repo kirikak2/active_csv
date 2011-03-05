@@ -1,4 +1,2 @@
-$: << File.expand_path("lib")
-puts $:.inspect
-puts "--------------"
+$: << File.expand_path("lib") 
 require 'active_csv'
