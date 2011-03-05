@@ -60,6 +60,7 @@ class ActiveCSV
 	def save
 		self.id = next_id 
 		persist_new_obj
+		true
 	end
 
 	def destroy
