@@ -71,7 +71,8 @@ module ClassMethods
 		file = DbFile.new(model_name+".txt")
 		content = file.csv_content
 		if args[0].respond_to? "integer?"
-				found_ids_indexes = find_with_ids(args,content)
+				ids = args
+				found_ids_indexes = find_with_ids(ids,content)
 				found_rows = find_rows_by_indexes(found_ids_indexes,content)
 		else
 			args[0].keys.each do |key|
