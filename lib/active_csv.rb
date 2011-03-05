@@ -57,7 +57,7 @@ class ActiveCSV
 		end
 	end
 
-	def save
+	def save #every time it is called, it adds a new line. Thats not suppose happen!
 		self.id = next_id 
 		persist_new_obj
 		true
