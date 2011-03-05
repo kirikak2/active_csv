@@ -24,6 +24,7 @@ class UpdateAttributesTests < Test::Unit::TestCase
 		
 		assert_equal "pink",car.color
 		assert_equal "pink",Car.find(2).first.color
+		assert_equal "Ferrari",Car.find(2).first.brand
 		delete_sample
 	end
 end
