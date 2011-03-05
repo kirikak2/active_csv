@@ -41,10 +41,8 @@ class ActiveCSV
 		last_id.to_i+1
 	end
 
-	def persist
-		#apagar linha correspondete ao index
+	def persist_existing
 		destroy
-		#gravar nova linha com o mesmo id
 		persist_new_obj
 	end
 
@@ -89,7 +87,7 @@ class ActiveCSV
 
 	def update_attributes(hash_attr)
 		hash_to_obj(hash_attr)
-		persist
+		persist_existing
 		true
 	end
 end
