@@ -64,7 +64,7 @@ module ClassMethods
 							found_cols << index
 						end
 					end
-		found_cols
+		found_cols #indexes
 	end
 
 	def find(*args)

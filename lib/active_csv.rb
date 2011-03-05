@@ -57,11 +57,8 @@ class ActiveCSV
 		csv_rows = db_file.csv_content
 		target_index = ''
 		unless self.id == nil
-			csv_rows.each_with_index do |row,index|
-				if row[0].to_s == self.id.to_s
-					target_index = index
-				end
-			end
+			ids = [self.id]
+			target_index = ActiveCSV.find_with_ids(ids,csv_rows).first
 			csv_rows.delete_at(target_index)
 			CSV.open(db_file.name,"wb") do |csv|		
 					csv_rows.each do |line|
