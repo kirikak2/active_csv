@@ -1,6 +1,6 @@
-require '../lib/active_csv/errors'
-require '../lib/active_csv/class_methods'
-require '../lib/active_csv/attr_file'
+require 'active_csv/errors'
+require 'active_csv/class_methods'
+require 'active_csv/attr_file'
 
 class DbFile
 	attr_accessor :name
