@@ -27,4 +27,14 @@ class UpdateAttributesTests < Test::Unit::TestCase
 		assert_equal "Ferrari",Car.find(2).first.brand
 		delete_sample
 	end
+
+	def test_update_attr_keeping_other_attr
+		create_sample_file
+		car = Car.find(2).first
+		car.update_attributes({:brand=>"Gol bolinha"})
+		
+		assert_equal "red",car.color
+		assert_equal "Gol bolinha",Car.find(2).first.brand
+		delete_sample
+	end
 end
