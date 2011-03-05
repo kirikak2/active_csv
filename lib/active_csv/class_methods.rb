@@ -20,7 +20,7 @@ module ClassMethods
 		objects
 	end
 
-#------- relacionadas ao find-------
+#------- relacionadas ao find-----------
 	def check_attr?(attribute)
 		attr_file = AttrFile.new("models/attributes.yml")	
 		attr_file.fields(model_name).include? attribute

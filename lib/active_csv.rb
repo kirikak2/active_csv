@@ -68,5 +68,17 @@ class ActiveCSV
 		end
 		self
 	end
+
+	def hash_to_ar(hash)
+		hash.each do |key, value|
+			key = key.to_s
+			eval("self."+key+" = hash[:"+key+"]")
+		end
+	end
+
+	def update_attributes(hash_attr)
+		hash_to_ar(hash_attr)
+#		self.color = "yeallow"
+	end
 end
 
