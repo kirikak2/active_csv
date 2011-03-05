@@ -56,11 +56,11 @@ module ClassMethods
 		found_ids
 	end
 
-	def find_with_attr(args,key,content)
+	def find_with_attr(attribute,value,content)
 		found_cols = Array.new
-		col = attr_column key.to_s
+		col = attr_column attribute.to_s
 		content.each_with_index do |row, index|
-						if row[col] == args[0][key]
+						if row[col] == value
 							found_cols << index
 						end
 					end
@@ -76,14 +76,14 @@ module ClassMethods
 		else
 			args[0].keys.each do |key|
 				if check_attr? key.to_s
-					found_rows_indexes = find_with_attr(args,key,content)
+					found_rows_indexes = find_with_attr(key,args[0][key],content)
 					found_rows = find_rows_by_indexes(found_rows_indexes,content)
 				else
 					# raise error
 				end
 			end
 		end
-		return ar_to_obj(found_rows)# transforma em objetos
+		return ar_to_obj(found_rows)
 
 	end
 
