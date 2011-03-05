@@ -53,8 +53,20 @@ class ActiveCSV
 		end
 	end
 
-	def delete
-		puts next_id
+	def destroy
+		csv_rows = db_file.csv_content
+		target_index = ''
+		csv_rows.each_with_index do |row,index|
+			if row[0].to_s == self.id.to_s
+				target_index = index
+			end
+		end
+		csv_rows.delete_at(target_index)
+		CSV.open(db_file.name,"wb") do |csv|		
+				csv_rows.each do |line|
+					csv << line
+				end
+		end
 	end
 end
 
