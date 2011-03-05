@@ -14,7 +14,6 @@ class ActiveCSV
 	def initialize
 		self.attr_file = AttrFile.new("models/attributes.yml")
 		self.db_file = DbFile.new(model_name+".txt")
-		self.id = next_id 
 	end
 
 	def model_name
@@ -43,6 +42,7 @@ class ActiveCSV
 	end
 
 	def save
+		self.id = next_id 
 		a = db_file.csv_content
 		new_row = field_values
 		CSV.open(db_file.name,"wb") do |csv|		
@@ -56,17 +56,20 @@ class ActiveCSV
 	def destroy
 		csv_rows = db_file.csv_content
 		target_index = ''
-		csv_rows.each_with_index do |row,index|
-			if row[0].to_s == self.id.to_s
-				target_index = index
+		unless self.id == nil
+			csv_rows.each_with_index do |row,index|
+				if row[0].to_s == self.id.to_s
+					target_index = index
+				end
+			end
+			csv_rows.delete_at(target_index)
+			CSV.open(db_file.name,"wb") do |csv|		
+					csv_rows.each do |line|
+						csv << line
+					end
 			end
 		end
-		csv_rows.delete_at(target_index)
-		CSV.open(db_file.name,"wb") do |csv|		
-				csv_rows.each do |line|
-					csv << line
-				end
-		end
+		self
 	end
 end
 
