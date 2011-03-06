@@ -23,7 +23,20 @@ class SaveTests < Test::Unit::TestCase
 		car.color = "red"
 		car.brand = "wolksvagen"
 		assert car.save
-		assert_equal Car.all.length, before+1
+		assert_equal before+1, Car.all.length
+		delete_sample
+	end
+
+	def test_save_again
+		create_sample_file
+		before = Car.all.length
+		car = Car.new
+		car.year = "1998"
+		car.color = "red"
+		car.brand = "wolksvagen"
+		assert car.save
+		assert car.save
+		assert_equal  before+1, Car.all.length
 		delete_sample
 	end
 end

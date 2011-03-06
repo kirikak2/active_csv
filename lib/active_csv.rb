@@ -58,22 +58,28 @@ class ActiveCSV
 	end
 
 	def save #every time it is called, it adds a new line. Thats not suppose happen!
-		self.id = next_id 
-		persist_new_obj
+		if self.id.nil?		
+			self.id = next_id 
+		end
+		persist_existing
 		true
 	end
 
-	def destroy
+	def destroy	
 		csv_rows = db_file.csv_content
 		target_index = ''
-		unless self.id == nil
+		unless self.id.nil?
 			ids = [self.id]
 			target_index = ActiveCSV.find_with_ids(ids,csv_rows).first
-			csv_rows.delete_at(target_index)
-			CSV.open(db_file.name,"wb") do |csv|		
+			unless target_index.nil?
+				csv_rows.delete_at(target_index)
+				CSV.open(db_file.name,"wb") do |csv|		
 					csv_rows.each do |line|
 						csv << line
 					end
+				end
+			else
+				return false
 			end
 		end
 		self
