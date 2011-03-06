@@ -60,7 +60,6 @@ class FindTests < Test::Unit::TestCase
 		params = ActiveSupport::HashWithIndifferentAccess.new
 		params[:id] = "2"
 		car = Car.find(params[:id])
-		puts car.inspect
 		assert_equal "2", car.id
 		delete_sample
 	end

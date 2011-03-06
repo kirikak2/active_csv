@@ -95,6 +95,8 @@ module ClassMethods
 		end
 	end
 
+#CAREFULL HERE
+#use overrides the method with the same name in ActiveModel::Naming
 	def model_name
 		self.name.to_s.downcase
 	end

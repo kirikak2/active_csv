@@ -2,11 +2,14 @@ require 'active_csv/errors'
 require 'active_csv/class_methods'
 require 'active_csv/attr_file'
 require 'active_csv/db_file'
+require 'rubygems'
+require 'active_model/naming'
 
 class ActiveCSV
 	require 'csv'
 	require 'yaml'
 
+	extend ActiveModel::Naming
 	extend ClassMethods
 
 	attr_accessor :id, :attr_file, :db_file
