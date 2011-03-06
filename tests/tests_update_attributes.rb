@@ -1,6 +1,8 @@
 require 'test/unit'
 require 'test_helpers'
 require 'car'
+require 'rubygems'
+require 'active_support/hash_with_indifferent_access'
 
 class UpdateAttributesTests < Test::Unit::TestCase
 	include TestHelpers
@@ -35,6 +37,15 @@ class UpdateAttributesTests < Test::Unit::TestCase
 		
 		assert_equal "red",car.color
 		assert_equal "Gol bolinha",Car.find(2).brand
+		delete_sample
+	end
+
+	def test_update_attributes_with_as_hash
+		create_sample_file
+		params = ActiveSupport::HashWithIndifferentAccess.new
+		params[:car] = {:color => "blue", :year => "2000", :brand => "Gol"}
+		car = Car.find(2)
+		car.update_attributes(params[:car])
 		delete_sample
 	end
 end
