@@ -1,7 +1,7 @@
 module ClassMethods
 	def all
 		objects = Array.new
-		db_file = DbFile.new(model_name+".txt")
+		db_file = DbFile.new(model_name_+".txt")
 		attr_array = db_file.csv_content
 		objects = ar_to_obj(attr_array)
 		objects
@@ -11,7 +11,7 @@ module ClassMethods
 		objects = Array.new
 		attr_array.each do |row|
 			new_object = eval(self.name).new
-			fields_ar = new_object.attr_file.fields(model_name)
+			fields_ar = new_object.attr_file.fields(model_name_)
 			fields_ar.each_index do |index|
 				eval("new_object."+fields_ar[index]+" = row[index]") #new_object.fields_ar[0] = row[0] and so on...
 			end
@@ -23,12 +23,12 @@ module ClassMethods
 #------- relacionadas ao find-----------
 	def check_attr?(attribute)
 		attr_file = AttrFile.new("config/csv_attributes.yml")	
-		attr_file.fields(model_name).include? attribute
+		attr_file.fields(model_name_).include? attribute
 	end
 
 	def attr_column(attribute)
 		object  = eval(self.name).new
-		object.attr_file.fields(model_name).index attribute
+		object.attr_file.fields(model_name_).index attribute
 	end
 
 	def find_rows_by_indexes(indexes,content)
@@ -68,7 +68,7 @@ module ClassMethods
 	end
 
 	def find(*args)
-		file = DbFile.new(model_name+".txt")
+		file = DbFile.new(model_name_+".txt")
 		content = file.csv_content
 		if args[0].respond_to? "to_i"
 				ids = Array.new
@@ -96,8 +96,8 @@ module ClassMethods
 	end
 
 #CAREFULL HERE
-#use overrides the method with the same name in ActiveModel::Naming
-	def model_name
+#use the method with the same name in ActiveModel::Naming
+	def model_name_
 		self.name.to_s.downcase
 	end
 end

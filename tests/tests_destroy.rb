@@ -37,17 +37,17 @@ class DestroyTests < Test::Unit::TestCase
 		car = Car.new
 		assert_kind_of Car, car.destroy
 		assert_equal 4, Car.all.length
-		assert_equal "2", Car.find(2).id
+		assert_equal "2", Car.find(2).cid
 		delete_sample
 	end
 
 	def test_destroy_file_without_id
 		create_sample_file
 		car = Car.new
-		car.id = 5
+		car.cid = 5
 		assert !car.destroy
 		assert_equal 4, Car.all.length
-		assert_equal "2", Car.find(2).id
+		assert_equal "2", Car.find(2).cid
 		delete_sample
 	end
 end

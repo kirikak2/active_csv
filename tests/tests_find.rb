@@ -30,14 +30,14 @@ class FindTests < Test::Unit::TestCase
 	def test_find_by_id_2
 		create_sample_file
 		car = Car.find(2)
-		assert_equal "2", car.id
+		assert_equal "2", car.cid
 		delete_sample
 	end
 
 	def test_find_by_id_3
 		create_sample_file
 		car = Car.find(3)
-		assert_equal "3", car.id
+		assert_equal "3", car.cid
 		delete_sample
 	end
 
@@ -50,8 +50,8 @@ class FindTests < Test::Unit::TestCase
 	def test_find_by_ids
 		create_sample_file
 		cars = Car.find(3,4)
-		assert_equal "4", cars[1].id
-		assert_equal "3", cars[0].id
+		assert_equal "4", cars[1].cid
+		assert_equal "3", cars[0].cid
 		delete_sample
 	end
 
@@ -60,7 +60,7 @@ class FindTests < Test::Unit::TestCase
 		params = ActiveSupport::HashWithIndifferentAccess.new
 		params[:id] = "2"
 		car = Car.find(params[:id])
-		assert_equal "2", car.id
+		assert_equal "2", car.cid
 		delete_sample
 	end
 end
