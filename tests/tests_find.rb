@@ -1,8 +1,6 @@
 require 'test/unit'
 require 'test_helpers'
 require 'car'
-require 'rubygems'
-require 'active_support/hash_with_indifferent_access'
 
 class FindTests < Test::Unit::TestCase
 	include TestHelpers
@@ -54,14 +52,4 @@ class FindTests < Test::Unit::TestCase
 		assert_equal "3", cars[0].id
 		delete_sample
 	end
-
-	def test_find_with_active_support_hash
-		create_sample_file
-		params = ActiveSupport::HashWithIndifferentAccess.new
-		params[:id] = 2
-		car = Car.find(params[:id])
-		assert_equal "2", car.id
-		delete_sample
-	end
-
 end
