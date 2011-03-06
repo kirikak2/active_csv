@@ -11,7 +11,7 @@ class ActiveCSV
 
 	attr_accessor :id, :attr_file, :db_file
 
-	def initialize
+	def initialize()
 		self.attr_file = AttrFile.new("models/attributes.yml")
 		self.db_file = DbFile.new(model_name+".txt")
 	end
