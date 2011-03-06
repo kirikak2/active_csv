@@ -11,9 +11,9 @@ class ActiveCSV
 
 	attr_accessor :id, :attr_file, :db_file
 
-	def initialize(*args)	
-		if args[0].class == Hash
-			hash_to_obj(args[0])
+	def initialize(*attributes)	
+		if attributes[0].is_a? Hash || attributes[0].is_a?(ActiveSupport::HashWithIndifferentAccess)
+			hash_to_obj(attributes[0])
 		end
 		self.attr_file = AttrFile.new("models/attributes.yml")
 		self.db_file = DbFile.new(model_name+".txt")
@@ -60,7 +60,7 @@ class ActiveCSV
 		end
 	end
 
-	def save #every time it is called, it adds a new line. Thats not suppose happen!
+	def save
 		if self.id.nil?		
 			self.id = next_id 
 		end
@@ -91,7 +91,7 @@ class ActiveCSV
 	def hash_to_obj(hash)
 		hash.each do |key, value|
 			key = key.to_s
-			eval("if hash[:"+key+"]; self."+key+" = hash[:"+key+"]; else; self."+key+" = hash[\""+key+"\"];end;")
+			eval("if hash[:"+key+"]; self."+key+" = hash[:"+key+"]; else; self."+key+" = hash[\""+key+"\"];end;") #this logic should be moved from here
 		end
 	end
 
