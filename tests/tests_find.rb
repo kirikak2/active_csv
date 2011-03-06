@@ -28,14 +28,14 @@ class FindTests < Test::Unit::TestCase
 	def test_find_by_id_2
 		create_sample_file
 		car = Car.find(2)
-		assert_equal "2", car[0].id
+		assert_equal "2", car.id
 		delete_sample
 	end
 
 	def test_find_by_id_3
 		create_sample_file
 		car = Car.find(3)
-		assert_equal "3", car[0].id
+		assert_equal "3", car.id
 		delete_sample
 	end
 

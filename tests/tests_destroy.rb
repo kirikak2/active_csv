@@ -7,7 +7,7 @@ class DestroyTests < Test::Unit::TestCase
 
 	def test_destroy_when_exists
 		create_sample_file
-		car = Car.find(2).first
+		car = Car.find(2)
 		car.destroy
 		assert_raise RecordNotFound do 
 			Car.find(2)
@@ -17,9 +17,9 @@ class DestroyTests < Test::Unit::TestCase
 
 	def test_destroy_sequencially
 		create_sample_file
-		car = Car.find(2).first
+		car = Car.find(2)
 		car.destroy
-		car2 = Car.find(3).first
+		car2 = Car.find(3)
 		car2.destroy
 		assert_raise RecordNotFound do
 			Car.find(2)
@@ -27,8 +27,8 @@ class DestroyTests < Test::Unit::TestCase
 		assert_raise RecordNotFound do
 			Car.find(3)
 		end
-		assert_equal "red",Car.find(1).first.color
-		assert_equal "2012",Car.find(4).first.year
+		assert_equal "red",Car.find(1).color
+		assert_equal "2012",Car.find(4).year
 		delete_sample
 	end
 
@@ -37,7 +37,7 @@ class DestroyTests < Test::Unit::TestCase
 		car = Car.new
 		assert_kind_of Car, car.destroy
 		assert_equal 4, Car.all.length
-		assert_equal "2", Car.find(2).first.id
+		assert_equal "2", Car.find(2).id
 		delete_sample
 	end
 
@@ -47,7 +47,7 @@ class DestroyTests < Test::Unit::TestCase
 		car.id = 5
 		assert !car.destroy
 		assert_equal 4, Car.all.length
-		assert_equal "2", Car.find(2).first.id
+		assert_equal "2", Car.find(2).id
 		delete_sample
 	end
 end

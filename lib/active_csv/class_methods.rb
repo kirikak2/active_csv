@@ -7,7 +7,7 @@ module ClassMethods
 		objects
 	end
 
-	def ar_to_obj(attr_array) # turns array of arrays into object properties. Returns array of objects
+	def ar_to_obj(attr_array) # turns array of arrays into array of objects
 		objects = Array.new
 		attr_array.each do |row|
 			new_object = eval(self.name).new
@@ -84,8 +84,12 @@ module ClassMethods
 				end
 			end
 		end
-		return ar_to_obj(found_rows)
-
+		found = ar_to_obj(found_rows)
+		if args.length == 1 && args[0].respond_to?("integer?")
+			return found.first
+		else
+			return found 
+		end
 	end
 
 	def model_name
