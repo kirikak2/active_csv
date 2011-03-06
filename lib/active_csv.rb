@@ -18,7 +18,7 @@ class ActiveCSV
 		if attributes[0].is_a? Hash || attributes[0].is_a?(ActiveSupport::HashWithIndifferentAccess)
 			hash_to_obj(attributes[0])
 		end
-		self.attr_file = AttrFile.new("models/attributes.yml")
+		self.attr_file = AttrFile.new("config/csv_attributes.yml")
 		self.db_file = DbFile.new(model_name+".txt")
 	end
 
