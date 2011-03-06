@@ -11,7 +11,10 @@ class ActiveCSV
 
 	attr_accessor :id, :attr_file, :db_file
 
-	def initialize()
+	def initialize(*args)	
+		if args[0].class == Hash
+			hash_to_obj(args[0])
+		end
 		self.attr_file = AttrFile.new("models/attributes.yml")
 		self.db_file = DbFile.new(model_name+".txt")
 	end
