@@ -46,6 +46,9 @@ class UpdateAttributesTests < Test::Unit::TestCase
 		params[:car] = {:color => "blue", :year => "2000", :brand => "Gol"}
 		car = Car.find(2)
 		car.update_attributes(params[:car])
+		assert_equal "blue", Car.find(2).color
+		assert_equal "2000", Car.find(2).year
+		assert_equal "Gol", Car.find(2).brand
 		delete_sample
 	end
 end
