@@ -70,8 +70,11 @@ module ClassMethods
 	def find(*args)
 		file = DbFile.new(model_name+".txt")
 		content = file.csv_content
-		if args[0].respond_to? "integer?"
-				ids = args
+		if args[0].respond_to? "to_i"
+				ids = Array.new
+				args.each do |el|
+								ids << el.to_i
+				end
 				found_ids_indexes = find_with_ids(ids,content)
 				found_rows = find_rows_by_indexes(found_ids_indexes,content)
 		else
@@ -85,7 +88,7 @@ module ClassMethods
 			end
 		end
 		found = ar_to_obj(found_rows)
-		if args.length == 1 && args[0].respond_to?("integer?")
+		if args.length == 1 && args[0].respond_to?("to_i")
 			return found.first
 		else
 			return found 
