@@ -10,10 +10,10 @@ class ActiveCSV
 	require 'yaml'
 
 	extend ClassMethods
-	extend ActiveModel::Naming
+	#extend ActiveModel::Naming
 
 
-	attr_accessor :cid, :attr_file, :db_file
+	attr_accessor :id, :attr_file, :db_file
 
 	def initialize(*attributes)	
 		if attributes[0].is_a? Hash || attributes[0].is_a?(ActiveSupport::HashWithIndifferentAccess)
@@ -35,7 +35,7 @@ class ActiveCSV
 		attributes #String
 	end
 
-	def last_cid
+	def last_id
 		attr_array = self.db_file.csv_content
 		unless attr_array.count == 0
 			attr_array.last[0]
@@ -44,8 +44,8 @@ class ActiveCSV
 		end
 	end
 
-	def next_cid
-		last_cid.to_i+1
+	def next_id
+		last_id.to_i+1
 	end
 
 	def persist_existing
@@ -65,8 +65,8 @@ class ActiveCSV
 	end
 
 	def save
-		if self.cid.nil?		
-			self.cid = next_cid 
+		if self.id.nil?		
+			self.id = next_id 
 		end
 		persist_existing
 		true
@@ -75,9 +75,9 @@ class ActiveCSV
 	def destroy	
 		csv_rows = db_file.csv_content
 		target_index = ''
-		unless self.cid.nil?
-			cids = [self.cid]
-			target_index = ActiveCSV.find_with_ids(cids,csv_rows).first
+		unless self.id.nil?
+			ids = [self.id]
+			target_index = ActiveCSV.find_with_ids(ids,csv_rows).first
 			unless target_index.nil?
 				csv_rows.delete_at(target_index)
 				CSV.open(db_file.name,"wb") do |csv|		
