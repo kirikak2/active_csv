@@ -1,12 +1,12 @@
 expense:
-  cid,
+  id,
   value,
   description,
   date,
   mean
 
 car:
-  cid,
+  id,
   year,
   color,
   brand
