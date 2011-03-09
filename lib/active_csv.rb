@@ -21,7 +21,7 @@ class ActiveCSV
 			hash_to_obj(attributes[0])
 		end
 		self.attr_file = AttrFile.new("config/csv_attributes.yml")
-		self.db_file = DbFile.new(model_name+".csv")
+		self.db_file = DbFile.new("db/"+model_name+".csv")
 	end
 
 	def model_name

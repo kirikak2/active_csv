@@ -1,7 +1,7 @@
 module ClassMethods
 	def all
 		objects = Array.new
-		db_file = DbFile.new(model_name_+".csv")
+		db_file = DbFile.new("db/"+model_name_+".csv")
 		attr_array = db_file.csv_content
 		objects = ar_to_obj(attr_array)
 		objects
@@ -68,7 +68,7 @@ module ClassMethods
 	end
 
 	def find(*args)
-		file = DbFile.new(model_name_+".csv")
+		file = DbFile.new("db/"+model_name_+".csv")
 		content = file.csv_content
 		if args[0].respond_to? "to_i"
 				ids = Array.new

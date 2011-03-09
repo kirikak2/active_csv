@@ -6,7 +6,7 @@ module TestHelpers
 							["2","1992", "red","Fiat"],
 							["3","1964","yellow","Fusca"],
 							["4","2012", "black","Citroën"]]
-		CSV.open("car.csv","wb") do |csv|
+		CSV.open("db/car.csv","wb") do |csv|
 			content.each do |line|
 				csv << line
 			end
@@ -14,6 +14,6 @@ module TestHelpers
 	end
 
 	def delete_sample
-		File.delete("car.csv")
+		File.delete("db/car.csv")
 	end
 end
