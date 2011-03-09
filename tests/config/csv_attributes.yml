@@ -1,12 +1,10 @@
 expense:
-  id,
   value,
   description,
   date,
   mean
 
 car:
-  id,
   year,
   color,
   brand
