@@ -1,0 +1,4 @@
+1,1997,red,Fiat
+2,1992,red,Fiat
+3,1964,yellow,Fusca
+4,2012,black,Citroën
