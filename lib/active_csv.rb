@@ -64,6 +64,14 @@ class ActiveCSV
 		end
 	end
 
+	def persisted?
+    unless self.id.nil?
+			true
+		else
+			false
+		end
+	end
+
 	def save
 		if self.id.nil?		
 			self.id = next_id 
