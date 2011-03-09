@@ -29,14 +29,19 @@ Just run:
  * Create the csv_attributes.yml file in the config folder, and include on it the model and the attributes 
  * You can include some validations in the model if you want
 
-So far the API is limited to:
- object.save
- Model.find(id)
- Model.find({:attr=>"value", :another_attr=>"value"})
- Model.all
- object.update_attributes()
- object.persisted?
- Model.new
+So far the API is limited to a fex methods. Here's some examples:
+
+	client = Client.new(:name=>"Tim")
+	client.save
+
+	client_one = Client.find(3)
+	client_one.update_attributes(:name=>"Tommas Edson")
+	client_one.persisted?
+
+	client_two = Model.find({:attr=>"value", :another_attr=>"value"}) # This is not AR-like, and will be changed in the future to meet AR's API
+	client_two.destroy
+
+	@clients = Client.all	
 
 === Found a bug?
 
