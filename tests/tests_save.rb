@@ -39,4 +39,16 @@ class SaveTests < Test::Unit::TestCase
 		assert_equal  before+1, Car.all.length
 		delete_sample
 	end
+
+	def test_dont_save_if_not_valid
+		create_sample_file
+		before = Car.all.length
+		car = Car.new
+		car.year = "1998"
+		car.color = "red"
+		assert !car.save
+		assert_equal  before, Car.all.length
+		delete_sample
+	end
+
 end
