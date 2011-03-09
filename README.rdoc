@@ -33,7 +33,7 @@ Just run:
 	end
 * Include attr_accessor with all the attributes in the model file
 	#app/models/client.rb
-	attr_accessor :name, ;address
+	attr_accessor :name, :address
 * Create the csv_attributes.yml file in the config folder, and include on it the model and the attributes 
 	#config/csv_attriubutes.yml
 	client:
@@ -65,4 +65,4 @@ Please let me know via email or create an issue on github.
 
 email: marcofognog@gmail.com
 
-github: github.com/marcofognog/ative_csv
+github: github.com/marcofognog/atcive_csv
