@@ -1,22 +1,26 @@
 == ActiveCSV
 
 What it is
+
 It is a ruby library for dealing with csv file lines, with the same API you would deal with Activerecord objects using a datadase. You can instantiate objects and manipulate, add validations and persist them just like you would do with Activerecord objects (still with some limitations).
 
 What it is not
+
 It is not an ORM. There are no relations between models (at the level of the data), since there are just csv files). There is no tables, so forget relational model.
 
 When not use it
+
 It's not a good idea keep object-related data in CSV files and build systems relying on it. If you don't want to use database, but rather store data in a file, try Sqlite.
 
 When use it
+
 When dealing with integration with legacy systems, you might need manipulate csv data along with database's data objects. You will use very similar API, but don't forget, csv data (sor far) cannot have relations.
 
-== Instalation:
+=== Instalation:
 just run:
- gem install active_csv
+ 	gem install active_csv
 
-== How to setup a model to use AtivceCSV
+=== How to setup a model to use AtivceCSV
 
 Include the ative_csv in the Gemfile
 Run bundle install
@@ -34,7 +38,9 @@ So far the API is limited to:
  object.persisted?
  Model.new
 
-Found a bug?
+=== Found a bug?
+
 Please let me know via email or create an issue on github.
+
 email: marcofognog@gmail.com
 github: github.com/marcofognog/atvice_csv
