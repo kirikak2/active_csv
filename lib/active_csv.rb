@@ -95,7 +95,7 @@ class ActiveCSV
 	def hash_to_obj(hash)
 		hash.each do |key, value|
 			key = key.to_s
-			eval("if hash[:"+key+"]; self."+key+" = hash[:"+key+"]; else; self."+key+" = hash[\""+key+"\"];end;") #this logic should be moved from here
+				send("#{key}=", value)
 		end
 	end
 
