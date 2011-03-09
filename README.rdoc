@@ -43,6 +43,8 @@ Just run:
 	#app/models/client.rb
 	validates_presence_of :name
 
+=== Usage
+
 So far the API is limited to a few methods. Here's some examples:
 
 	client = Client.new(:name=>"Tim")
