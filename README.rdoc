@@ -12,7 +12,11 @@ It's not a good idea keep object-related data in CSV files and build systems rel
 When use it
 When dealing with integration with legacy systems, you might need manipulate csv data along with database's data objects. You will use very similar API, but don't forget, csv data (sor far) cannot have relations.
 
-How to setup a model to use AtivceCSV
+== Instalation:
+just run:
+ gem install active_csv
+
+== How to setup a model to use AtivceCSV
 
 Include the ative_csv in the Gemfile
 Run bundle install
@@ -22,13 +26,13 @@ Create the csv_attributes.yml file in the config folder, and include on it the m
 You can include some validations in the model if you want
 
 So far the API is limited to:
-object.save
-Model.find(id)
-Model.find({:attr=>"value", :another_attr=>"value"})
-Model.all
-object.update_attributes()
-object.persisted?
-Model.new
+ object.save
+ Model.find(id)
+ Model.find({:attr=>"value", :another_attr=>"value"})
+ Model.all
+ object.update_attributes()
+ object.persisted?
+ Model.new
 
 Found a bug?
 Please let me know via email or create an issue on github.
