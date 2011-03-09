@@ -8,7 +8,7 @@ What it is not
 
 It is not an ORM. There are no relations between models (at the level of the data), since there are just csv files). There is no tables, so forget relational model.
 
-When not use it
+====When not use it
 
 It's not a good idea keep object-related data in CSV files and build systems relying on it. If you don't want to use database, but rather store data in a file, try Sqlite.
 
@@ -17,7 +17,7 @@ When use it
 When dealing with integration with legacy systems, you might need manipulate csv data along with database's data objects. You will use very similar API, but don't forget, csv data (sor far) cannot have relations.
 
 === Instalation:
-just run:
+Just run:
  	gem install active_csv
 
 === How to setup a model to use AtivceCSV
@@ -43,4 +43,5 @@ So far the API is limited to:
 Please let me know via email or create an issue on github.
 
 email: marcofognog@gmail.com
+
 github: github.com/marcofognog/atvice_csv
