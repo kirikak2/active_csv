@@ -65,7 +65,7 @@ class ActiveCSV
 		end
 	end
 
-	# This is used by form_for
+	# Also used by form_for in the views on Rails
 	def persisted?
     unless self.id.nil?
 			true
@@ -78,8 +78,12 @@ class ActiveCSV
 		unless persisted?		
 			self.id = next_id 
 		end
-		persist_existing
-		true
+		if valid?
+			persist_existing
+			return true
+		else
+			return false
+		end
 	end
 
 	def destroy	
