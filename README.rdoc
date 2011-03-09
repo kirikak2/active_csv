@@ -23,13 +23,27 @@ Just run:
 == How to setup a model to use AtivceCSV
 
 * Include the ative_csv in the Gemfile
+	#Gemfile
+	gem 'active_csv'
 * Run bundle install
-* Change the class the model so itinherits from ActiveCSV instead of ActiveRecord
-* Include attr_accessor with all the attributes of the model
+	$ bundle install
+* Change the class the model so it inherits from ActiveCSV instead of ActiveRecord, like the following
+	#app/models/client.rb
+	class Client < ActiveCSV
+	end
+* Include attr_accessor with all the attributes in the model file
+	#app/models/client.rb
+	attr_accessor :name, ;address
 * Create the csv_attributes.yml file in the config folder, and include on it the model and the attributes 
+	#config/csv_attriubutes.yml
+	client:
+	  name,
+	  address
 * You can include some validations in the model if you want
+	#app/models/client.rb
+	validates_presence_of :name
 
-So far the API is limited to a fex methods. Here's some examples:
+So far the API is limited to a few methods. Here's some examples:
 
 	client = Client.new(:name=>"Tim")
 	client.save
