@@ -75,10 +75,10 @@ class ActiveCSV
 	end
 
 	def save
-		unless persisted?		
-			self.id = next_id 
-		end
 		if valid?
+			unless persisted?		
+				self.id = next_id 
+			end
 			persist_existing
 			return true
 		else
