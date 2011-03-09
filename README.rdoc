@@ -22,12 +22,12 @@ Just run:
 
 == How to setup a model to use AtivceCSV
 
-Include the ative_csv in the Gemfile
-Run bundle install
-Change the class the model so itinherits from ActiveCSV instead of ActiveRecord
-Include attr_accessor with all the attributes of the model
-Create the csv_attributes.yml file in the config folder, and include on it the model and the attributes 
-You can include some validations in the model if you want
+ * Include the ative_csv in the Gemfile
+ * Run bundle install
+ * Change the class the model so itinherits from ActiveCSV instead of ActiveRecord
+ * Include attr_accessor with all the attributes of the model
+ * Create the csv_attributes.yml file in the config folder, and include on it the model and the attributes 
+ * You can include some validations in the model if you want
 
 So far the API is limited to:
  object.save
@@ -44,4 +44,4 @@ Please let me know via email or create an issue on github.
 
 email: marcofognog@gmail.com
 
-github: github.com/marcofognog/atvice_csv
+github: github.com/marcofognog/ative_csv
