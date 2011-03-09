@@ -13,7 +13,7 @@ module ClassMethods
 			new_object = eval(self.name).new
 			fields_ar = new_object.attr_file.fields(model_name_)
 			fields_ar.each_index do |index|
-				eval("new_object."+fields_ar[index]+" = row[index]") #new_object.fields_ar[0] = row[0] and so on...
+				new_object.send("#{fields_ar[index]}=",row[index])
 			end
 			objects << new_object
 		end
