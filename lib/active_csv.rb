@@ -3,15 +3,16 @@ require 'active_csv/class_methods'
 require 'active_csv/attr_file'
 require 'active_csv/db_file'
 require 'rubygems'
-require 'active_model/naming'
+require 'active_model'
 
 class ActiveCSV
 	require 'csv'
 	require 'yaml'
 
 	extend ClassMethods
-	#extend ActiveModel::Naming
-
+	extend ActiveModel::Naming
+	include ActiveModel::Validations
+	include ActiveModel::Conversion
 
 	attr_accessor :id, :attr_file, :db_file
 
@@ -64,6 +65,7 @@ class ActiveCSV
 		end
 	end
 
+	# This is used by form_for
 	def persisted?
     unless self.id.nil?
 			true
@@ -73,7 +75,7 @@ class ActiveCSV
 	end
 
 	def save
-		if self.id.nil?		
+		unless persisted?		
 			self.id = next_id 
 		end
 		persist_existing
