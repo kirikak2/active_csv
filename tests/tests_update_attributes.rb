@@ -51,4 +51,16 @@ class UpdateAttributesTests < Test::Unit::TestCase
 		assert_equal "Gol", Car.find(2).brand
 		delete_sample
 	end
+
+	def test_dont_update_attributes_if_not_valid
+		create_sample_file
+		params = ActiveSupport::HashWithIndifferentAccess.new
+		params[:car] = {:color => "blue", :year => "2000", :brand=>""}
+		car = Car.find(2)
+		assert !car.update_attributes(params[:car])
+		assert_not_equal "blue", Car.find(2).color
+		assert_not_equal "2000", Car.find(2).year
+
+		delete_sample
+	end
 end

@@ -115,8 +115,11 @@ class ActiveCSV
 
 	def update_attributes(hash_attr)
 		hash_to_obj(hash_attr)
-		persist_existing
-		true
+		if valid?
+			persist_existing
+			true
+		else
+			false
+		end
 	end
 end
-
