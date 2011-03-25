@@ -8,7 +8,7 @@ class InitializeTests < Test::Unit::TestCase
 	include TestHelpers
 
 	def setup
-		create_attr_file
+		create_attr_file unless File.exists? "config/csv_attributes.yml"
 	end
 
 	def test_initialize_with_attr_hash

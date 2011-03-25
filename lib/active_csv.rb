@@ -20,7 +20,7 @@ class ActiveCSV
 		if attributes[0].is_a? Hash || attributes[0].is_a?(ActiveSupport::HashWithIndifferentAccess)
 			hash_to_obj(attributes[0])
 		end
-		self.attr_file = AttrFile.new ## refactor this ##################
+		self.attr_file = AttrFile.new(ActiveCSV.csv_attr_file_name) ## refactor this ##################
 		self.db_file = DbFile.new("db/"+model_name+".csv")
 	end
 

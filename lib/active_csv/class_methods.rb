@@ -1,6 +1,14 @@
 module ClassMethods
 
-	@@csv_attributes_file = "config/csv_attributes.yml"
+	@@csv_attributes_file = "config/csv_attributes_with_other_name.yml"
+
+	def set_attr_file_name(new_attr_file_name)
+		@@csv_attributes_file = new_attr_file_name
+	end
+	
+	def csv_attr_file_name
+		@@csv_attributes_file
+	end
 
 	def all
 		objects = Array.new
@@ -27,7 +35,7 @@ module ClassMethods
 #------- FIND realated -----------
 
 	def check_attr?(attribute)
-		attr_file = AttrFile.new	 #refactor this ################
+		attr_file = AttrFile.new(@@csv_attributes_file)	 #refactor this ################
 		attr_file.fields(model_name_).include? attribute
 	end
 
