@@ -7,7 +7,8 @@ module ClassMethods
 		objects
 	end
 
-	def ar_to_obj(attr_array) # turns array of arrays into array of objects
+  # turns array of arrays into array of objects
+	def ar_to_obj(attr_array)
 		objects = Array.new
 		attr_array.each do |row|
 			new_object = eval(self.name).new
@@ -20,7 +21,8 @@ module ClassMethods
 		objects
 	end
 
-#------- relacionadas ao find-----------
+#------- FIND realated -----------
+
 	def check_attr?(attribute)
 		attr_file = AttrFile.new("config/csv_attributes.yml")	
 		attr_file.fields(model_name_).include? attribute
@@ -96,7 +98,7 @@ module ClassMethods
 	end
 
 #CAREFULL HERE
-#use the method with the same name in ActiveModel::Naming
+#to not use the method with the same name in ActiveModel::Naming
 	def model_name_
 		self.name.to_s.downcase
 	end

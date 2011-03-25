@@ -82,7 +82,7 @@ class ActiveCSV
 			persist_existing
 			return true
 		else
-			return false
+			false
 		end
 	end
 
