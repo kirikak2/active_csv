@@ -6,7 +6,7 @@ It is a ruby library for dealing with csv file lines, with the same API you woul
 
 ==== What it is not
 
-It is not an ORM. There are no relations between models (at the level of the data), since there are just csv files). There is no tables, so forget relational model.
+It is not an ORM. There are no relations between models (at the level of the data), since there are just csv files. There is no tables, so forget relational model.
 
 ==== When not use it
 
