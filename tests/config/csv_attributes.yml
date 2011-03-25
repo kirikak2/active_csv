@@ -1,9 +1,3 @@
-expense:
-  value,
-  description,
-  date,
-  mean
-
 car:
   year,
   color,
