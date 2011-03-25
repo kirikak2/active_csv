@@ -4,6 +4,7 @@ class DbFile
 	def initialize(_name)
 		@name = _name
 	end
+
 	def csv_content
 		csv_rows = Array.new
 		if !file_exists?

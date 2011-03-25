@@ -1,4 +1,7 @@
 module ClassMethods
+
+	@@csv_attributes_file = "config/csv_attributes.yml"
+
 	def all
 		objects = Array.new
 		db_file = DbFile.new("db/"+model_name_+".csv")
@@ -24,7 +27,7 @@ module ClassMethods
 #------- FIND realated -----------
 
 	def check_attr?(attribute)
-		attr_file = AttrFile.new("config/csv_attributes.yml")	
+		attr_file = AttrFile.new	 #refactor this ################
 		attr_file.fields(model_name_).include? attribute
 	end
 

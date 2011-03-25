@@ -1,7 +1,7 @@
 class AttrFile
 	attr_accessor :name
 
-	def initialize(_name)
+	def initialize(_name="config/csv_attributes.yml")
 		@name = _name
 	end
 	def fields(model_name)
