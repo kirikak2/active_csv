@@ -5,6 +5,10 @@ require 'car'
 class SaveTests < Test::Unit::TestCase
 	include TestHelpers
 
+	def setup
+		create_attr_file
+	end
+
 	def test_save_file_exists 
 		car = Car.new
 		car.year = "1998"

@@ -5,6 +5,10 @@ require 'car'
 class DestroyTests < Test::Unit::TestCase
 	include TestHelpers
 
+	def setup
+		create_attr_file
+	end
+
 	def test_destroy_when_exists
 		create_sample_file
 		car = Car.find(2)

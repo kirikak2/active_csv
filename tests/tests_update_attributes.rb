@@ -7,6 +7,10 @@ require 'active_support/hash_with_indifferent_access'
 class UpdateAttributesTests < Test::Unit::TestCase
 	include TestHelpers
 
+	def setup
+		create_attr_file
+	end
+
 	def test_update_attr_three_attr
 		create_sample_file
 		car = Car.find(1)

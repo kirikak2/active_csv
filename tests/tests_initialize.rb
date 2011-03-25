@@ -7,6 +7,10 @@ require 'active_support/hash_with_indifferent_access'
 class InitializeTests < Test::Unit::TestCase
 	include TestHelpers
 
+	def setup
+		create_attr_file
+	end
+
 	def test_initialize_with_attr_hash
 		car = Car.new(:color=>"blues")
 		assert_equal "blues",car.color
