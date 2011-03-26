@@ -11,7 +11,7 @@ end
 class SetAttrFileNameTests < Test::Unit::TestCase
 	include TestHelpers
 	
-	def test_delete
+	def test_set_attr_file_name
 		delete_attr_file
 		create_different_attr_file
 		before = Car.all.length
@@ -21,6 +21,7 @@ class SetAttrFileNameTests < Test::Unit::TestCase
 		assert car.save
 		assert_equal before+1, Car.all.length
 		#delete_different_attr_file
+		#create_attr_file
 	end
 
 end
