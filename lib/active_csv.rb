@@ -30,9 +30,6 @@ class ActiveCSV
 		@@attr_file_name[self] = new_name
 	end
 
-
-#----------------------------------------------------------------------------------------------
-
 	def initialize(*attributes)	
 		if attributes[0].is_a? Hash || attributes[0].is_a?(ActiveSupport::HashWithIndifferentAccess)
 			hash_to_obj(attributes[0])

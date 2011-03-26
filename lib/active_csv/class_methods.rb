@@ -1,7 +1,11 @@
 module ClassMethods
 
 	def fields(model_name)
-		model_fields = YAML.load_file(attr_file_name)
+		attribute_file = attr_file_name
+		if attribute_file.nil?
+			attribute_file = "config/csv_attributes.yml"
+		end
+		model_fields = YAML.load_file(attribute_file)
 		fields = model_fields[model_name].split(', ').insert(0,"id")
 		fields
 	end
