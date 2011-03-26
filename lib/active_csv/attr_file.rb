@@ -1,5 +1,5 @@
 class AttrFile
-	@@name = "config/csv_attributes.yml"
+	#@@name = "config/csv_attributes.yml"
 
 	class << self
 		attr_accessor :name

@@ -6,7 +6,7 @@ class AllTests < Test::Unit::TestCase
 	include TestHelpers
 
 	def setup
-		create_attr_file unless File.exists? "config/csv_attributes.yml"
+		create_attr_file 
 	end
 
 	def test_all
