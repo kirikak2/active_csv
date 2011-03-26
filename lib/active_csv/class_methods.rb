@@ -1,10 +1,6 @@
 module ClassMethods
 
 	def fields(model_name)
-		puts " -----------------------------------------------------------"
-		puts attr_file_name
-		puts self
-
 		model_fields = YAML.load_file(attr_file_name)
 		fields = model_fields[model_name].split(', ').insert(0,"id")
 		fields
