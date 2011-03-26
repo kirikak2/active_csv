@@ -7,6 +7,7 @@ class SaveTests < Test::Unit::TestCase
 
 	def setup
 		create_attr_file
+		delete_different_attr_file
 	end
 
 	def test_persisted_is_still_false

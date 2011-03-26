@@ -6,7 +6,8 @@ class AllTests < Test::Unit::TestCase
 	include TestHelpers
 
 	def setup
-		create_attr_file 
+		create_attr_file
+		delete_different_attr_file
 	end
 
 	def test_all

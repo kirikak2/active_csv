@@ -1,10 +1,10 @@
 require 'test/unit'
 require 'test_helpers'
-require 'car'
+require 'car_with_set_attr'
 require 'rubygems'
 require 'active_support/hash_with_indifferent_access'
 
-class Car
+class Car2
 	set_attr_file_name "config/csv_attributes_with_other_name.yml"
 end
 
@@ -14,14 +14,14 @@ class SetAttrFileNameTests < Test::Unit::TestCase
 	def test_set_attr_file_name
 		delete_attr_file
 		create_different_attr_file
-		before = Car.all.length
-		car = Car.new(:year=>1999)
+		before = Car2.all.length
+		car = Car2.new(:year=>1999)
 		car.brand = "WV"
 		car.color = "red again"
 		assert car.save
-		assert_equal before+1, Car.all.length
-		#delete_different_attr_file
-		#create_attr_file
+		assert_equal before+1, Car2.all.length
+		delete_different_attr_file
+		create_attr_file
 	end
 
 end

@@ -1,7 +1,13 @@
 module ClassMethods
 
-	def set_attr_file_name(new_attr_file_name)
-		AttrFile.name = new_attr_file_name
+	def fields(model_name)
+		puts " -----------------------------------------------------------"
+		puts attr_file_name
+		puts self
+
+		model_fields = YAML.load_file(attr_file_name)
+		fields = model_fields[model_name].split(', ').insert(0,"id")
+		fields
 	end
 
 	def all
@@ -12,12 +18,13 @@ module ClassMethods
 		objects
 	end
 
+
   # turns array of arrays into array of objects
 	def ar_to_obj(attr_array)
 		objects = Array.new
 		attr_array.each do |row|
 			new_object = eval(self.name).new
-			fields_ar = new_object.attr_file.fields(model_name_)
+			fields_ar = fields(model_name_)
 			fields_ar.each_index do |index|
 				new_object.send("#{fields_ar[index]}=",row[index])
 			end
@@ -26,16 +33,14 @@ module ClassMethods
 		objects
 	end
 
-#------- FIND realated -----------
+#------- FIND related -----------
 
 	def check_attr?(attribute)
-		attr_file = AttrFile.new	 #refactor this ################
-		attr_file.fields(model_name_).include? attribute
+		fields(model_name_).include? attribute
 	end
 
 	def attr_column(attribute)
-		object  = eval(self.name).new
-		object.attr_file.fields(model_name_).index attribute
+		fields(model_name_).index attribute
 	end
 
 	def find_rows_by_indexes(indexes,content)

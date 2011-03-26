@@ -27,12 +27,14 @@ module TestHelpers
 	end
 
 	def delete_attr_file
-		File.delete("config/csv_attributes.yml")
+		if File.exists? "config/csv_attributes.yml"
+			File.delete("config/csv_attributes.yml")
+		end
 	end
 
 	def create_different_attr_file
-		unless File.exists? "config/csv_attributes.yml"
-			content = "car:\n  year,\n  color,\n  brand"
+		unless File.exists? "config/csv_attributes_with_other_name.yml"
+			content = "car2:\n  year,\n  color,\n  brand"
 			file = File.new("config/csv_attributes_with_other_name.yml", "wb")
 			file.puts content
 			file.close
@@ -40,6 +42,8 @@ module TestHelpers
 	end
 
 	def delete_different_attr_file
-		File.delete("config/csv_attributes_with_other_name.yml")
+		if File.exists? "config/csv_attributes_with_other_name.yml"
+			File.delete("config/csv_attributes_with_other_name.yml")
+		end
 	end
 end

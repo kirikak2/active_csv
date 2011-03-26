@@ -1,6 +1,5 @@
 require 'active_csv/errors'
 require 'active_csv/class_methods'
-require 'active_csv/attr_file'
 require 'active_csv/db_file'
 require 'rubygems'
 require 'active_model'
@@ -14,13 +13,30 @@ class ActiveCSV
 	include ActiveModel::Validations
 	include ActiveModel::Conversion
 
-	attr_accessor :id, :attr_file, :db_file
+	attr_accessor :id, :db_file
+
+	@@attr_file_name = {}
+
+	def self.attr_file_name
+		@@attr_file_name[self]
+	end
+
+	def self.attr_file_name=(new_name)
+		@@attr_file_name[self] = new_name
+	end
+
+	#Alias for attr_file_name
+	def self.set_attr_file_name(new_name)
+		@@attr_file_name[self] = new_name
+	end
+
+
+#----------------------------------------------------------------------------------------------
 
 	def initialize(*attributes)	
 		if attributes[0].is_a? Hash || attributes[0].is_a?(ActiveSupport::HashWithIndifferentAccess)
 			hash_to_obj(attributes[0])
 		end
-		self.attr_file = AttrFile.new ## refactor this ##################
 		self.db_file = DbFile.new("db/"+model_name+".csv")
 	end
 
@@ -30,7 +46,7 @@ class ActiveCSV
 	
 	def field_values
 		attributes = Array.new
-		attr_file.fields(model_name).each do |field|
+		self.class.fields(model_name).each do |field|
 			 attributes << eval(field)
 		end
 		attributes #String
