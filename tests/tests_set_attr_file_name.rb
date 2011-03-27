@@ -4,10 +4,6 @@ require 'car_with_set_attr'
 require 'rubygems'
 require 'active_support/hash_with_indifferent_access'
 
-class Car2
-	set_attr_file_name "config/csv_attributes_with_other_name.yml"
-end
-
 class SetAttrFileNameTests < Test::Unit::TestCase
 	include TestHelpers
 	
