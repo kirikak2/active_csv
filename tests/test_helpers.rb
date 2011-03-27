@@ -38,7 +38,7 @@ module TestHelpers
 	def create_attr_file_for(model_name)
 		unless File.exists? "config/csv_attributes_configurable.yml"
 			content = "#{model_name}:\n  year,\n  color,\n  brand"
-			file = File.new("config/csv_attributes.yml", "wb")
+			file = File.new("config/csv_attributes_configurable.yml", "wb")
 			file.puts content
 			file.close
 		end
