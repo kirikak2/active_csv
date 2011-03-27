@@ -1,6 +1,8 @@
 require 'csv'
 
 module TestHelpers
+
+#-------DB File ----------------------------------
 	def create_sample_file 
 		content = [["1","1997", "red","Fiat"],
 							["2","1992", "red","Fiat"],
@@ -18,7 +20,18 @@ module TestHelpers
 			File.delete("db/car.csv")
 		end
 	end
-	
+
+	def delete_something_db_file
+		if File.exists? "db/something.csv"
+			File.delete("db/something.csv")
+		end
+	end
+
+	def delete_all_db_files
+		# maybe a rake task?		
+	end
+
+
 #---------Attr File------------------------------
 	def create_attr_file
 		unless File.exists? "config/csv_attributes.yml"

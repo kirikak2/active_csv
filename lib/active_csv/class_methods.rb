@@ -1,5 +1,9 @@
 module ClassMethods
 
+	def set_csv_file_name
+		
+	end
+
 	def fields(model_name)
 		attribute_file = attr_file_name
 		if attribute_file.nil?
@@ -12,7 +16,7 @@ module ClassMethods
 
 	def all
 		objects = Array.new
-		db_file = DbFile.new("db/"+model_name_+".csv")
+		db_file = DbFile.new(csv_file_name)####
 		attr_array = db_file.csv_content
 		objects = ar_to_obj(attr_array)
 		objects
@@ -80,7 +84,7 @@ module ClassMethods
 	end
 
 	def find(*args)
-		file = DbFile.new("db/"+model_name_+".csv")
+		file = DbFile.new(csv_file_name)###
 		content = file.csv_content
 		if args[0].respond_to? "to_i"
 				ids = Array.new

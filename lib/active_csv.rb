@@ -15,6 +15,7 @@ class ActiveCSV
 
 	attr_accessor :id, :db_file
 
+#------------Bescause of set_attr_file_name---------------------------------------
 	@@attr_file_name = {}
 
 	def self.attr_file_name
@@ -29,12 +30,30 @@ class ActiveCSV
 	def self.set_attr_file_name(new_name)
 		@@attr_file_name[self] = new_name
 	end
+#----------------------------------------------------
+
+#------------Because of set_csv_file_name ----------------------------------------
+	@@csv_file_name = {}
+
+	def self.csv_file_name
+		@@csv_file_name[self]
+	end
+
+	def self.csv_file_name=(new_name)
+		@@csv_file_name[self] = new_name
+	end
+	
+	def self.set_csv_file_name (new_name)
+		@@csv_file_name[self] = new_name
+	end
+#----------------------------------------------------
+
 
 	def initialize(*attributes)	
 		if attributes[0].is_a? Hash || attributes[0].is_a?(ActiveSupport::HashWithIndifferentAccess)
 			hash_to_obj(attributes[0])
 		end
-		self.db_file = DbFile.new("db/"+model_name+".csv")
+		self.db_file = DbFile.new(self.class.csv_file_name)###
 	end
 
 	def model_name

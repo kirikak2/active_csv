@@ -2,7 +2,15 @@ class DbFile
 	attr_accessor :name
 
 	def initialize(_name)
-		@name = _name
+		if _name.nil?
+			@name = 'db/'+'car'+'.csv'
+		else
+			@name = _name
+		end
+	end
+
+	def name
+		@name
 	end
 
 	def csv_content
@@ -22,9 +30,5 @@ class DbFile
 
 	def create_db_file
 		CSV.open(name,'w')
-	end
-
-	def field_values
-		ActiveCSV.field_values
 	end
 end
