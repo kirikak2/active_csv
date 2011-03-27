@@ -1,8 +1,4 @@
-require 'test/unit'
-require 'test_helpers'
-require 'car_with_set_attr'
-require 'rubygems'
-require 'active_support/hash_with_indifferent_access'
+require 'require_all'
 
 
 

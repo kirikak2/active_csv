@@ -1,7 +1,4 @@
-require 'test/unit'
-require 'test_helpers'
-require 'car'
-
+require 'require_all'
 class SaveTests < Test::Unit::TestCase
 	include TestHelpers
 

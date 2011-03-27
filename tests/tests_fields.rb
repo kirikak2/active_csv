@@ -1,9 +1,4 @@
-require 'test/unit'
-require 'test_helpers'
-require 'car'
-require 'car_with_set_attr'
-
-
+require 'require_all'
 class TestsFields < Test::Unit::TestCase
 	include TestHelpers
 	def test_field_without_set_attr_file

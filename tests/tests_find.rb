@@ -1,8 +1,4 @@
-require 'test/unit'
-require 'test_helpers'
-require 'car'
-require 'rubygems'
-require 'active_support/hash_with_indifferent_access'
+require 'require_all'
 
 class FindTests < Test::Unit::TestCase
 	include TestHelpers
