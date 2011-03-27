@@ -21,12 +21,6 @@ module TestHelpers
 		end
 	end
 
-	def delete_something_db_file
-		if File.exists? "db/something.csv"
-			File.delete("db/something.csv")
-		end
-	end
-
 	def delete_all_db_files
 		# maybe a rake task?		
 	end
