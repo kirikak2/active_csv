@@ -15,7 +15,7 @@ class SetAttrFileNameTests < Test::Unit::TestCase
 		assert car.save
 		assert_equal before+1, CarWithSetAttr.all.length
 		delete_different_attr_file
-		create_attr_file
+		delete_sample
 	end
 
 end

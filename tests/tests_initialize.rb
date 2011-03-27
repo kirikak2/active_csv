@@ -41,4 +41,9 @@ class InitializeTests < Test::Unit::TestCase
 		assert_equal "blue", car.color
 		assert_equal "1999", car.year
 	end
+
+	def teardown
+		delete_attr_file
+		delete_sample
+	end
 end

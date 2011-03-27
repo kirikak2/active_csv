@@ -8,7 +8,8 @@ class SetCSVFileNameTests < Test::Unit::TestCase
 		car = CarWithSetCSV.new(:year=>1999, :brand=>"UNO", :color=>"white")
 		assert car.save
 		assert File.exists? "db/something.csv"
-#		delete_attr_file
-#		delete_sample
+		File.delete "db/something.csv" if File.exists? "db/something.csv"
+		delete_attr_file_for :carwithsetcsv
+		delete_sample
 	end
 end

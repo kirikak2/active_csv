@@ -51,6 +51,12 @@ module TestHelpers
 		end
 	end
 
+	def delete_attr_file_for(model_name)
+		if File.exists? "config/csv_attributes_configurable.yml"
+			File.delete "config/csv_attributes_configurable.yml"
+		end
+	end
+
 	def create_different_attr_file
 		unless File.exists? "config/csv_attributes_with_other_name.yml"
 			content = "carwithsetattr:\n  year,\n  color,\n  brand"

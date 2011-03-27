@@ -15,4 +15,8 @@ class SaveTests < Test::Unit::TestCase
 		assert !car.persisted?
 		delete_sample
 	end
+	
+	def teardown
+		delete_attr_file
+	end
 end

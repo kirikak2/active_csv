@@ -23,7 +23,7 @@ class TestsFields < Test::Unit::TestCase
 
 		assert fields_ar.length, 4
 
-		delete_attr_file
+		delete_different_attr_file
 		delete_sample
 	end
 

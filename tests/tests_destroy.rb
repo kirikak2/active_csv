@@ -52,4 +52,8 @@ class DestroyTests < Test::Unit::TestCase
 		assert_equal "2", Car.find(2).id
 		delete_sample
 	end
+
+	def teardown
+		delete_attr_file
+	end
 end

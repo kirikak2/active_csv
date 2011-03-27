@@ -26,4 +26,8 @@ class AllTests < Test::Unit::TestCase
 		cars = Car.all
 		assert_equal(0,cars.length)
 	end
+
+	def teardown
+		delete_attr_file
+	end
 end
