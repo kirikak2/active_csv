@@ -17,4 +17,9 @@ class SetAttrFileNameTests < Test::Unit::TestCase
 		delete_sample
 	end
 
+	def test_set_attr_file_name_by_calling_attr
+		create_attr_file_for CarWithSetAttr
+		assert CarWithSetAttr.attr_file_name, "config/csv_attributes_with_other_name.yml"
+	end
+
 end
