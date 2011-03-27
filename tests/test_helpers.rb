@@ -17,6 +17,7 @@ module TestHelpers
 		File.delete("db/car.csv")
 	end
 	
+#---------Attr File------------------------------
 	def create_attr_file
 		unless File.exists? "config/csv_attributes.yml"
 			content = "car:\n  year,\n  color,\n  brand"
@@ -29,6 +30,15 @@ module TestHelpers
 	def delete_attr_file
 		if File.exists? "config/csv_attributes.yml"
 			File.delete("config/csv_attributes.yml")
+		end
+	end
+
+	def create_attr_file_for(model_name)
+		unless File.exists? "config/csv_attributes.yml"
+			content = "#{model_name}:\n  year,\n  color,\n  brand"
+			file = File.new("config/csv_attributes.yml", "wb")
+			file.puts content
+			file.close
 		end
 	end
 
