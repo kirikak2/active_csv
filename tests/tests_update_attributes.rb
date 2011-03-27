@@ -4,7 +4,7 @@ class UpdateAttributesTests < Test::Unit::TestCase
 	include TestHelpers
 
 	def setup
-		create_attr_file
+		create_attr_file_for Car
 	end
 
 	def test_update_attr_three_attr
@@ -65,6 +65,6 @@ class UpdateAttributesTests < Test::Unit::TestCase
 	end
 
 	def teardown
-		delete_attr_file
+		delete_attr_file_for Car
 	end
 end

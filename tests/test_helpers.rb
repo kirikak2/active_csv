@@ -27,48 +27,32 @@ module TestHelpers
 
 
 #---------Attr File------------------------------
-	def create_attr_file
-		unless File.exists? "config/csv_attributes.yml"
-			content = "car:\n  year,\n  color,\n  brand"
-			file = File.new("config/csv_attributes.yml", "wb")
-			file.puts content
-			file.close
-		end
-	end
-
-	def delete_attr_file
-		if File.exists? "config/csv_attributes.yml"
-			File.delete("config/csv_attributes.yml")
-		end
-	end
 
 	def create_attr_file_for(model_name)
-		unless File.exists? "config/csv_attributes_configurable.yml"
-			content = "#{model_name}:\n  year,\n  color,\n  brand"
-			file = File.new("config/csv_attributes_configurable.yml", "wb")
+		if model_name.attr_file_name.nil?
+			file_name = "config/csv_attributes.yml"
+		else
+			file_name = model_name.attr_file_name
+		end
+		unless File.exists? "#{file_name}"
+			content = "#{model_name.to_s.downcase}:\n  year,\n  color,\n  brand"
+			file = File.new("#{file_name}", "wb")
 			file.puts content
 			file.close
 		end
 	end
 
 	def delete_attr_file_for(model_name)
-		if File.exists? "config/csv_attributes_configurable.yml"
-			File.delete "config/csv_attributes_configurable.yml"
+		if model_name.attr_file_name.nil?
+			file_name = "config/csv_attributes.yml"
+		else
+			file_name = model_name.attr_file_name
+		end
+		if File.exists? "#{file_name}"
+			File.delete "#{file_name}"
 		end
 	end
 
-	def create_different_attr_file
-		unless File.exists? "config/csv_attributes_with_other_name.yml"
-			content = "carwithsetattr:\n  year,\n  color,\n  brand"
-			file = File.new("config/csv_attributes_with_other_name.yml", "wb")
-			file.puts content
-			file.close
-		end
-	end
+#-------------------------------------------------------
 
-	def delete_different_attr_file
-		if File.exists? "config/csv_attributes_with_other_name.yml"
-			File.delete("config/csv_attributes_with_other_name.yml")
-		end
-	end
 end

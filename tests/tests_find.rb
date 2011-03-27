@@ -4,8 +4,7 @@ class FindTests < Test::Unit::TestCase
 	include TestHelpers
 
 	def setup
-		create_attr_file
-		delete_different_attr_file
+		create_attr_file_for Car
 	end
 
 	def test_find_by_attr
@@ -66,6 +65,6 @@ class FindTests < Test::Unit::TestCase
 	end
 
 	def teardown
-		delete_attr_file
+		delete_attr_file_for Car
 	end
 end
