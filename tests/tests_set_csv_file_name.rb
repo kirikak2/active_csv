@@ -10,7 +10,6 @@ class SetCSVFileNameTests < Test::Unit::TestCase
 	include TestHelpers
 
 	def test_set_csv_file_name
-		delete_something_db_file
 		create_attr_file_for :carwithsetcsv
 		car = CarWithSetCSV.new(:year=>1999, :brand=>"UNO", :color=>"white")
 		assert car.save
