@@ -34,7 +34,7 @@ module TestHelpers
 
 	def create_different_attr_file
 		unless File.exists? "config/csv_attributes_with_other_name.yml"
-			content = "car2:\n  year,\n  color,\n  brand"
+			content = "carwithsetattr:\n  year,\n  color,\n  brand"
 			file = File.new("config/csv_attributes_with_other_name.yml", "wb")
 			file.puts content
 			file.close

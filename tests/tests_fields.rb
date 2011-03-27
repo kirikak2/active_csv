@@ -3,9 +3,6 @@ require 'test_helpers'
 require 'car'
 require 'car_with_set_attr'
 
-class Car2
-	set_attr_file_name "config/csv_attributes_with_other_name.yml"
-end
 
 class TestsFields < Test::Unit::TestCase
 	include TestHelpers
@@ -27,7 +24,7 @@ class TestsFields < Test::Unit::TestCase
 		create_different_attr_file
 		create_sample_file
 
-		fields_ar = Car2.fields('car2')
+		fields_ar = CarWithSetAttr.fields('carwithsetattr')
 
 		assert fields_ar.length, 4
 
