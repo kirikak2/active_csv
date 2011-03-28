@@ -73,3 +73,7 @@ Please let me know via email or create an issue on github.
 email: marcofognog@gmail.com
 
 github: github.com/marcofognog/atcive_csv
+
+===License
+
+ActiveCSV is released under the MIT license.
