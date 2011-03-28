@@ -34,12 +34,19 @@ Just run:
 * Include attr_accessor with all the attributes in the model file
 	#app/models/client.rb
 	attr_accessor :name, :address
-* Create the csv_attributes.yml file in the config folder, and include on it the model and the attributes 
+* Create the csv_attributes.yml (or equivalent) file in the config folder, and include on it the model and the attributes 
 	#config/csv_attriubutes.yml
 	client:
 	  name,
 	  address
-* You can include some validations in the model if you want
+* If you want, you can name the yml and CSV files, overwrinting the defaults, so it would look like
+	#app/models/client.rb
+	class Client < ActiveCSV
+		attr_accessor :name, :address
+		set_attr_file_name "config/something.yml" # default is 'config/csv_attributes.yml'
+		set_csv_file_name "db/other_something.csv" # default is the lowercase version of the model name. In this case, 'db/client.csv'.
+	end
+* You can include some validation in the model if you want
 	#app/models/client.rb
 	validates_presence_of :name
 
