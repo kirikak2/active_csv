@@ -24,7 +24,7 @@ Just run:
 
 * Include the ative_csv in the Gemfile
 	#Gemfile
-	gem 'active_csv'
+	gem 'active_csv','0.1.2'
 * Run bundle install
 	$ bundle install
 * Change the class the model so it inherits from ActiveCSV instead of ActiveRecord, like the following
