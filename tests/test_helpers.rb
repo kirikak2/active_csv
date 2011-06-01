@@ -1,4 +1,5 @@
 require 'csv'
+require 'yaml'
 
 module TestHelpers
 
@@ -35,9 +36,17 @@ module TestHelpers
 			file_name = model_name.attr_file_name
 		end
 		unless File.exists? "#{file_name}"
-			content = "#{model_name.to_s.downcase}:\n  year,\n  color,\n  brand"
+      content = {"#{model_name.to_s.downcase}" => 
+        {
+          "column" => [
+            {"name" => "year", "type" => "String"},
+            {"name" => "color", "type" => "String"},
+            {"name" => "brand", "type" => "String"}
+          ],
+        }
+      }
 			file = File.new("#{file_name}", "wb")
-			file.puts content
+      YAML.dump(content, file)
 			file.close
 		end
 	end

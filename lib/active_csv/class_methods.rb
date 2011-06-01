@@ -10,7 +10,7 @@ module ClassMethods
 			attribute_file = "tests/config/csv_attributes.yml"
 		end
 		model_fields = YAML.load_file(attribute_file)
-		fields = model_fields[model_name].split(', ').insert(0,"id")
+		fields = model_fields[model_name]["column"].map{|col| col["name"] }.insert(0,"id")
 		fields
 	end
 
