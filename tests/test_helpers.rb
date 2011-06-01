@@ -8,7 +8,7 @@ module TestHelpers
 							["2","1992", "red","Fiat"],
 							["3","1964","yellow","Fusca"],
 							["4","2012", "black","Citroën"]]
-		CSV.open("db/car.csv","wb") do |csv|
+		CSV.open("tests/db/car.csv","wb") do |csv|
 			content.each do |line|
 				csv << line
 			end
@@ -16,8 +16,8 @@ module TestHelpers
 	end
 
 	def delete_sample
-		if File.exists? "db/car.csv"
-			File.delete("db/car.csv")
+		if File.exists? "tests/db/car.csv"
+			File.delete("tests/db/car.csv")
 		end
 	end
 
@@ -30,7 +30,7 @@ module TestHelpers
 
 	def create_attr_file_for(model_name)
 		if model_name.attr_file_name.nil?
-			file_name = "config/csv_attributes.yml"
+			file_name = "tests/config/csv_attributes.yml"
 		else
 			file_name = model_name.attr_file_name
 		end
@@ -44,7 +44,7 @@ module TestHelpers
 
 	def delete_attr_file_for(model_name)
 		if model_name.attr_file_name.nil?
-			file_name = "config/csv_attributes.yml"
+			file_name = "tests/config/csv_attributes.yml"
 		else
 			file_name = model_name.attr_file_name
 		end

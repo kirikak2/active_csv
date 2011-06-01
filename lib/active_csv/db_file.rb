@@ -3,7 +3,7 @@ class DbFile
 
 	def initialize(_name)
 		if _name.nil?
-			@name = 'db/'+'car'+'.csv'
+			@name = 'tests/db/'+'car'+'.csv'
 		else
 			@name = _name
 		end
